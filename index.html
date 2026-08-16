@@ -319,6 +319,119 @@ html { scroll-behavior: smooth; }
   z-index: 10 !important;
 }
 
+
+/* --- MODERN TIMELINE BAR DESIGN --- */
+.strip {
+  position: relative !important;
+  height: 130px !important;
+  background: linear-gradient(135deg, #132a42 0%, #17324d 100%) !important;
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  padding: 0 40px !important;
+  align-items: center !important;
+  border-radius: 20px !important;
+  margin: 25px 58px !important;
+  box-shadow: 0 12px 30px rgba(19, 42, 66, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+  overflow: visible !important;
+}
+
+/* Timeline Connecting Line */
+.strip::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 80px !important;
+  right: 80px !important;
+  top: 40px !important;
+  height: 4px !important;
+  background: rgba(201, 146, 47, 0.3) !important;
+  border-radius: 99px !important;
+  z-index: 1 !important;
+}
+
+/* Animated Timeline Active Line */
+.strip::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 80px !important;
+  top: 40px !important;
+  height: 4px !important;
+  width: var(--timeline-progress, 0%) !important;
+  max-width: calc(100% - 160px) !important;
+  background: linear-gradient(90deg, #c9922f, #f5cf68) !important;
+  border-radius: 99px !important;
+  z-index: 1 !important;
+  box-shadow: 0 0 10px rgba(201, 146, 47, 0.8) !important;
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.strip div {
+  border-left: none !important;
+  padding: 8px 6px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  position: relative !important;
+  z-index: 2 !important;
+  cursor: pointer !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Node circle markers */
+.strip div::before {
+  content: attr(data-step);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #17324d;
+  border: 3px solid #c9922f;
+  color: #f5cf68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 0 4px #17324d, 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.strip div b {
+  font-size: 12px !important;
+  letter-spacing: 0.4px !important;
+  color: #d1dde6 !important;
+  margin-top: 2px !important;
+  transition: color 0.3s ease !important;
+}
+.strip div span {
+  font-size: 11px !important;
+  color: #8da4b7 !important;
+  margin-top: 3px !important;
+  transition: color 0.3s ease !important;
+}
+
+.strip div:hover::before,
+.strip div.strip-active::before {
+  background: #c9922f !important;
+  color: #17324d !important;
+  border-color: #fff !important;
+  transform: scale(1.28) !important;
+  box-shadow: 0 0 0 4px #17324d, 0 0 18px rgba(201, 146, 47, 0.8) !important;
+}
+
+.strip div:hover b, .strip div.strip-active b {
+  color: #f5cf68 !important;
+  font-weight: 800 !important;
+}
+
+.strip div:hover span, .strip div.strip-active span {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
@@ -872,12 +985,12 @@ html, body, .page, .page * {
 </div>
 </div>
 </section>
-<div class="strip">
-<div><b>Trước TK XIX</b><span>Tiền hàng hoá</span></div>
-<div><b>TK XIX – Đầu TK XX</b><span>Tiền kim loại</span></div>
-<div><b>Đầu TK XX – Hiện nay</b><span>Tiền giấy</span></div>
-<div><b>Cuối TK XX – Hiện nay</b><span>Tiền qua ngân hàng</span></div>
-<div><b>Thế kỷ XXI</b><span>Tiền kỹ thuật số</span></div>
+<div class="strip" id="timeline-strip">
+<div data-step="1"><b>Trước TK XIX</b><span>Tiền hàng hoá</span></div>
+<div data-step="2"><b>TK XIX – Đầu TK XX</b><span>Tiền kim loại</span></div>
+<div data-step="3"><b>Đầu TK XX – Hiện nay</b><span>Tiền giấy</span></div>
+<div data-step="4"><b>Cuối TK XX – Hiện nay</b><span>Tiền qua ngân hàng</span></div>
+<div data-step="5"><b>Thế kỷ XXI</b><span>Tiền kỹ thuật số</span></div>
 </div>
 <section class="section">
 <div class="secHead"><div class="no">01</div><div class="secTitle">Sự tiến hoá của các hình thái tiền tệ</div><div class="secSub">Từ tiền hàng hoá đến tiền kỹ thuật số.</div></div>
@@ -1101,6 +1214,57 @@ document.addEventListener("DOMContentLoaded", function() {
         card.classList.add("card-highlight");
         if (stripItems[index]) {
           stripItems[index].classList.add("strip-active");
+        }
+      });
+    });
+  }
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const stripBar = document.getElementById("timeline-strip");
+  const stripItems = document.querySelectorAll(".strip div");
+  const cleanCards = document.querySelectorAll(".p01Clean .cleanCard");
+  const p01Section = document.querySelector(".p01Clean");
+
+  function updateTimelineProgress(index) {
+    if (stripBar) {
+      const progressPercent = (index / (stripItems.length - 1)) * 100;
+      stripBar.style.setProperty("--timeline-progress", progressPercent + "%");
+    }
+  }
+
+  if (stripItems.length > 0) {
+    stripItems.forEach((item, index) => {
+      item.addEventListener("click", function() {
+        stripItems.forEach(el => el.classList.remove("strip-active"));
+        cleanCards.forEach(card => card.classList.remove("card-highlight"));
+
+        item.classList.add("strip-active");
+        updateTimelineProgress(index);
+
+        if (cleanCards[index]) {
+          cleanCards[index].classList.add("card-highlight");
+          if (p01Section) {
+            const yOffset = -80;
+            const y = p01Section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }
+      });
+    });
+
+    cleanCards.forEach((card, index) => {
+      card.addEventListener("click", function() {
+        cleanCards.forEach(c => c.classList.remove("card-highlight"));
+        stripItems.forEach(s => s.classList.remove("strip-active"));
+
+        card.classList.add("card-highlight");
+        if (stripItems[index]) {
+          stripItems[index].classList.add("strip-active");
+          updateTimelineProgress(index);
         }
       });
     });
