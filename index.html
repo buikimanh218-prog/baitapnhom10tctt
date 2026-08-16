@@ -569,6 +569,29 @@ html {
   animation: none !important;
 }
 
+
+/* --- FULL EDGE-TO-EDGE IMAGES IN CARDS --- */
+.cleanVisual, .p01Visual, .p01Visual20, .visual, .photoTimeline {
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.cleanVisual img, 
+.p01Visual img, 
+.p01Visual20 img, 
+.visual img, 
+.photoTimeline img, 
+.photoV img {
+  object-fit: cover !important;
+  object-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
