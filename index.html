@@ -506,18 +506,20 @@ html { scroll-behavior: smooth; }
 #lightbox-close:hover { background: #c9922f; color: #17324d; }
 
 
-/* --- FIX CROPPED IMAGES (OBJECT-FIT CONTAIN) --- */
-.photo img, 
+/* --- HERO & CARD FULL EDGE-TO-EDGE IMAGES --- */
 .heroR .photo img, 
 .heroR .photo:first-child img, 
-.heroSmall img, 
-.cbdcPhoto img, 
-.visual img, 
-.photoV img,
-.photoTimeline img, 
-.cleanVisual img, 
-.p01Visual img, 
-.p01Visual20 img {
+.heroSmall img,
+.heroBottom img,
+.heroBottom .heroSmall img {
+  object-fit: cover !important;
+  object-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.cbdcPhoto img {
   object-fit: contain !important;
   object-position: center !important;
   background-color: #eef3f6 !important;
