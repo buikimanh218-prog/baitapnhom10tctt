@@ -1733,12 +1733,14 @@ th.infoHead .hoverInfo strong {
 /* --- GLOBAL UNCLIPPED HOVER TOOLTIP FIX --- */
 #global-info-tooltip {
   position: fixed !important;
-  max-width: 320px !important;
-  min-width: 250px !important;
+  max-width: 310px !important;
+  min-width: 240px !important;
   width: max-content !important;
-  padding: 14px 16px !important;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
-  border: 1.5px solid #c9922f !important;
+  padding: 13px 16px !important;
+  background: rgba(15, 23, 42, 0.88) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: none !important;
   border-radius: 12px !important;
   color: #f8fafc !important;
   font-family: Arial, "Segoe UI", -apple-system, sans-serif !important;
@@ -1748,12 +1750,13 @@ th.infoHead .hoverInfo strong {
   white-space: normal !important;
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
-  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.45), 0 10px 15px -5px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3) !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-  transform: translateY(6px) scale(0.96) !important;
-  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s ease !important;
+  transform: translateY(4px) !important;
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out, visibility 0.15s ease !important;
+  will-change: opacity, transform !important;
   z-index: 9999999 !important;
   user-select: text !important;
   -webkit-user-select: text !important;
@@ -1761,10 +1764,10 @@ th.infoHead .hoverInfo strong {
 }
 
 #global-info-tooltip.global-info-tooltip-visible {
-  opacity: 1 !important;
+  opacity: 0.92 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-  transform: translateY(0) scale(1) !important;
+  transform: translateY(0) !important;
 }
 
 #global-info-tooltip strong {
@@ -4507,12 +4510,12 @@ document.addEventListener('DOMContentLoaded',function(){
             arrow.style.top = "100%";
             arrow.style.bottom = "auto";
             arrow.style.borderWidth = "7px 7px 0 7px";
-            arrow.style.borderColor = "#c9922f transparent transparent transparent";
+            arrow.style.borderColor = "rgba(15, 23, 42, 0.88) transparent transparent transparent";
           } else {
             arrow.style.top = "-7px";
             arrow.style.bottom = "auto";
             arrow.style.borderWidth = "0 7px 7px 7px";
-            arrow.style.borderColor = "transparent transparent #c9922f transparent";
+            arrow.style.borderColor = "transparent transparent rgba(15, 23, 42, 0.88) transparent";
           }
         }
 
