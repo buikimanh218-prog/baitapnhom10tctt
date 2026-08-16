@@ -1197,6 +1197,95 @@ html {
   text-shadow: 0 0 12px rgba(245, 207, 104, 0.9) !important;
 }
 
+
+/* --- PINNED SIDEBAR MODE STYLES --- */
+.sidebar-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+#sidebar-pin-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #94a3b8 !important;
+  font-size: 15px !important;
+  width: 28px !important;
+  height: 28px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  border-radius: 6px !important;
+}
+
+#sidebar-pin-btn:hover, body.sidebar-pinned #sidebar-pin-btn {
+  color: #c9922f !important;
+  background: rgba(201, 146, 47, 0.15) !important;
+  transform: scale(1.1) !important;
+}
+
+body.sidebar-pinned #sidebar-drawer {
+  transform: translateX(0) !important;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.sidebar-pinned #sidebar-backdrop {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body.sidebar-pinned .page {
+  margin-left: 280px !important;
+  transition: margin-left 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+body.sidebar-pinned #hamburger-btn {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
+
+/* --- COMPACT SLIM SIDEBAR DRAWER STYLES --- */
+#sidebar-drawer {
+  width: 220px !important;
+  padding: 16px 12px !important;
+}
+
+.sidebar-head {
+  padding-bottom: 10px !important;
+  margin-bottom: 12px !important;
+}
+
+.brand-main {
+  font-size: 12px !important;
+}
+
+.sidebar-nav {
+  gap: 4px !important;
+}
+
+.sidebar-link {
+  padding: 8px 10px !important;
+  gap: 10px !important;
+  border-radius: 6px !important;
+}
+
+.sidebar-link .link-num {
+  font-size: 13px !important;
+  min-width: 18px !important;
+}
+
+.sidebar-link .link-title {
+  font-size: 12px !important;
+}
+
+body.sidebar-pinned .page {
+  margin-left: 230px !important;
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
@@ -1748,7 +1837,10 @@ html, body, .page, .page * {
     <div class="sidebar-brand">
       <span class="brand-main">NHÓM 10 — TCTT</span>
     </div>
-    <button id="sidebar-close-btn" title="Đóng">&times;</button>
+    <div class="sidebar-actions">
+      <button id="sidebar-pin-btn" title="Ghim Sidebar cố định">📌</button>
+      <button id="sidebar-close-btn" title="Đóng">&times;</button>
+    </div>
   </div>
 
   <div class="sidebar-body">
@@ -2478,6 +2570,33 @@ document.addEventListener("DOMContentLoaded", function() {
         else link.classList.remove("active");
       });
     });
+  });
+})();
+</script>
+
+
+<script>
+(function() {
+  document.addEventListener("DOMContentLoaded", function() {
+    const pinBtn = document.getElementById("sidebar-pin-btn");
+    const body = document.body;
+
+    // Load saved pin preference
+    if (localStorage.getItem("sidebar_pinned") === "true") {
+      body.classList.add("sidebar-pinned");
+      if (pinBtn) pinBtn.setAttribute("title", "Bỏ ghim Sidebar");
+    }
+
+    if (pinBtn) {
+      pinBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        body.classList.toggle("sidebar-pinned");
+
+        const isPinned = body.classList.contains("sidebar-pinned");
+        localStorage.setItem("sidebar_pinned", isPinned ? "true" : "false");
+        pinBtn.setAttribute("title", isPinned ? "Bỏ ghim Sidebar" : "Ghim Sidebar cố định");
+      });
+    }
   });
 })();
 </script>
