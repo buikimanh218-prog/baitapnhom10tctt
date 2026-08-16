@@ -289,6 +289,36 @@ html { scroll-behavior: smooth; }
   background-color: #eef3f6 !important;
 }
 
+
+/* --- STRIP & CLEAN CARD SYNC INTERACTION --- */
+.strip div {
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
+}
+.strip div:hover, .strip div.strip-active {
+  background: rgba(201, 146, 47, 0.22) !important;
+  box-shadow: inset 0 -4px 0 #c9922f;
+  transform: translateY(-3px) !important;
+}
+.strip div.strip-active b {
+  color: #c9922f !important;
+}
+.strip div.strip-active span {
+  color: #ffffff !important;
+  font-weight: bold !important;
+}
+
+.p01Clean .cleanCard {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.45s ease !important;
+}
+.p01Clean .cleanCard.card-highlight {
+  transform: translateY(-18px) scale(1.06) !important;
+  box-shadow: 0 22px 45px rgba(201, 146, 47, 0.4), 0 0 0 3px #c9922f !important;
+  border-color: #c9922f !important;
+  z-index: 10 !important;
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
@@ -1028,6 +1058,53 @@ document.addEventListener("DOMContentLoaded", function() {
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) lightbox.classList.remove("active");
   });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const stripItems = document.querySelectorAll(".strip div");
+  const cleanCards = document.querySelectorAll(".p01Clean .cleanCard");
+  const p01Section = document.querySelector(".p01Clean");
+
+  if (stripItems.length > 0 && cleanCards.length > 0) {
+    stripItems.forEach((item, index) => {
+      item.setAttribute("title", "Bấm để xem chi tiết ở mục bên dưới");
+      item.addEventListener("click", function() {
+        // Remove active states
+        stripItems.forEach(el => el.classList.remove("strip-active"));
+        cleanCards.forEach(card => card.classList.remove("card-highlight"));
+
+        // Add active states
+        item.classList.add("strip-active");
+        if (cleanCards[index]) {
+          cleanCards[index].classList.add("card-highlight");
+
+          // Scroll smoothly to section or card
+          if (p01Section) {
+            const yOffset = -80;
+            const y = p01Section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }
+      });
+    });
+
+    // Also sync back when clicking on cleanCard
+    cleanCards.forEach((card, index) => {
+      card.style.cursor = "pointer";
+      card.addEventListener("click", function() {
+        cleanCards.forEach(c => c.classList.remove("card-highlight"));
+        stripItems.forEach(s => s.classList.remove("strip-active"));
+
+        card.classList.add("card-highlight");
+        if (stripItems[index]) {
+          stripItems[index].classList.add("strip-active");
+        }
+      });
+    });
+  }
 });
 </script>
 
