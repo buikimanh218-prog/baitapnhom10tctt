@@ -507,6 +507,34 @@ html {
   transform: translateY(0) translateZ(0);
 }
 
+
+/* --- CARD POP SPRING & SMOOTH SCROLL ENHANCEMENT --- */
+.p01Clean .cleanCard {
+  will-change: transform, box-shadow, border-color;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s ease !important;
+  cursor: pointer !important;
+}
+
+.p01Clean .cleanCard:hover {
+  transform: translateY(-10px) scale(1.025) translateZ(0) !important;
+  box-shadow: 0 20px 40px rgba(23, 50, 77, 0.18) !important;
+}
+
+.p01Clean .cleanCard.card-highlight {
+  animation: cardPopSpring 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+  box-shadow: 0 30px 60px -10px rgba(201, 146, 47, 0.45), 0 0 0 3.5px #c9922f, 0 14px 28px rgba(23, 50, 77, 0.22) !important;
+  border-color: #c9922f !important;
+  z-index: 15 !important;
+}
+
+@keyframes cardPopSpring {
+  0% { transform: translateY(0) scale(1) translateZ(0); }
+  55% { transform: translateY(-24px) scale(1.08) translateZ(0); }
+  100% { transform: translateY(-18px) scale(1.05) translateZ(0); }
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
@@ -1347,6 +1375,95 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+</script>
+
+
+<script>
+(function() {
+  function smoothScrollToTarget(targetY, duration) {
+    duration = duration || 700;
+    const startY = window.pageYOffset || document.documentElement.scrollTop;
+    const distance = targetY - startY;
+    let startTime = null;
+
+    function easeOutQuart(t) {
+      return 1 - (--t) * t * t * t;
+    }
+
+    function step(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easeProgress = easeOutQuart(progress);
+      window.scrollTo(0, startY + distance * easeProgress);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const stripBar = document.getElementById("timeline-strip");
+    const stripItems = document.querySelectorAll(".strip div");
+    const cleanCards = document.querySelectorAll(".p01Clean .cleanCard");
+    const p01Section = document.querySelector(".p01Clean");
+
+    function updateProgress(index) {
+      if (stripBar && stripItems.length > 1) {
+        const percent = (index / (stripItems.length - 1)) * 100;
+        stripBar.style.setProperty("--timeline-progress", percent + "%");
+      }
+    }
+
+    if (stripItems.length > 0 && cleanCards.length > 0) {
+      stripItems.forEach((item, index) => {
+        item.addEventListener("click", function() {
+          stripItems.forEach(el => el.classList.remove("strip-active"));
+          cleanCards.forEach(card => card.classList.remove("card-highlight"));
+
+          item.classList.add("strip-active");
+          updateProgress(index);
+
+          if (cleanCards[index]) {
+            // Trigger animation repaint
+            cleanCards[index].classList.remove("card-highlight");
+            void cleanCards[index].offsetWidth; // force reflow
+            cleanCards[index].classList.add("card-highlight");
+
+            if (p01Section) {
+              const yOffset = -90;
+              const targetY = p01Section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+              smoothScrollToTarget(targetY, 750);
+            }
+          }
+        });
+      });
+
+      cleanCards.forEach((card, index) => {
+        card.addEventListener("click", function() {
+          cleanCards.forEach(c => c.classList.remove("card-highlight"));
+          stripItems.forEach(s => s.classList.remove("strip-active"));
+
+          card.classList.remove("card-highlight");
+          void card.offsetWidth; // force reflow
+          card.classList.add("card-highlight");
+
+          if (stripItems[index]) {
+            stripItems[index].classList.add("strip-active");
+            updateProgress(index);
+          }
+
+          // Smoothly center the clicked card into view
+          const cardRect = card.getBoundingClientRect();
+          const targetY = cardRect.top + window.pageYOffset - (window.innerHeight / 2) + (cardRect.height / 2);
+          smoothScrollToTarget(targetY, 650);
+        });
+      });
+    }
+  });
+})();
 </script>
 
 </body></html><style id="v42-icons-other-sections">
