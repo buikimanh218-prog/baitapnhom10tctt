@@ -1176,6 +1176,27 @@ html {
   color: #ffffff !important;
 }
 
+
+/* --- HIGH-CONTRAST SIDEBAR NUMBERS FIX --- */
+.sidebar-link .link-num {
+  font-family: SourceSerif, Georgia, serif !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  color: #f5cf68 !important;
+  min-width: 24px !important;
+  display: inline-block !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar-link:hover .link-num,
+.sidebar-link.active .link-num,
+.sidebar-link:active .link-num {
+  color: #ffffff !important;
+  transform: scale(1.15) !important;
+  text-shadow: 0 0 12px rgba(245, 207, 104, 0.9) !important;
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
