@@ -1286,6 +1286,721 @@ body.sidebar-pinned .page {
   margin-left: 230px !important;
 }
 
+
+/* --- CLEAN HERO QUICK-VIEW MODAL STYLES (HƯỚNG 2) --- */
+
+
+.quick-modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(13, 27, 42, 0.75) !important;
+  backdrop-filter: blur(8px) !important;
+  z-index: 25000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  padding: 20px !important;
+}
+
+.quick-modal-backdrop.active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.quick-modal-card {
+  width: min(520px, 90vw) !important;
+  background: linear-gradient(135deg, #132a42 0%, #17324d 100%) !important;
+  border: 1.5px solid #c9922f !important;
+  border-radius: 20px !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5) !important;
+  padding: 28px 30px !important;
+  color: #ffffff !important;
+  position: relative !important;
+  transform: scale(0.92) translateY(15px) !important;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.quick-modal-backdrop.active .quick-modal-card {
+  transform: scale(1) translateY(0) !important;
+}
+
+.quick-modal-close-btn {
+  position: absolute !important;
+  top: 18px !important;
+  right: 20px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-size: 24px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+.quick-modal-close-btn:hover {
+  background: #c9922f !important;
+  color: #17324d !important;
+}
+
+.quick-modal-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  margin-bottom: 18px !important;
+  padding-bottom: 16px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.quick-modal-icon-badge {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  background: rgba(201, 146, 47, 0.2) !important;
+  border: 1.5px solid #c9922f !important;
+  color: #f5cf68 !important;
+  font-size: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: SourceSerif, Georgia, serif !important;
+}
+
+.quick-modal-title-group h3 {
+  margin: 0 !important;
+  font-family: SourceSerif, Georgia, serif !important;
+  font-size: 24px !important;
+  color: #f5cf68 !important;
+  font-weight: 800 !important;
+}
+
+.quick-modal-sub {
+  font-size: 13px !important;
+  color: #cbd5e1 !important;
+}
+
+.quick-modal-body p {
+  margin: 0 0 16px 0 !important;
+  font-size: 14.5px !important;
+  line-height: 1.65 !important;
+  color: #e2e8f0 !important;
+}
+
+.quick-modal-bullets {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.modal-bullet {
+  font-size: 13px !important;
+  color: #cbd5e1 !important;
+}
+
+.modal-bullet b {
+  color: #c9922f !important;
+}
+
+.quick-modal-footer {
+  margin-top: 22px !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.quick-modal-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 10px 20px !important;
+  background: #c9922f !important;
+  color: #17324d !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 6px 18px rgba(201, 146, 47, 0.35) !important;
+}
+
+.quick-modal-action-btn:hover {
+  background: #f5cf68 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 24px rgba(201, 146, 47, 0.5) !important;
+}
+
+
+/* --- REMOVE ALL (i) ICONS AND HOVER TOOLTIPS --- */
+
+
+
+/* --- 100% DISABLED ALL HOVER TOOLTIPS --- */
+
+
+
+/* --- SLEEK (i) HOVER TOOLTIP STYLES --- */
+.infoHead {
+  position: relative !important;
+  cursor: pointer !important;
+}
+
+.infoTrigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  background: rgba(201, 146, 47, 0.18) !important;
+  color: #c9922f !important;
+  border: 1px solid #c9922f !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  font-family: Arial, sans-serif !important;
+  cursor: pointer !important;
+  margin-left: 6px !important;
+  vertical-align: middle !important;
+  transition: all 0.25s ease !important;
+}
+
+.infoHead:hover .infoTrigger,
+.infoTrigger:hover {
+  background: #c9922f !important;
+  color: #17324d !important;
+  transform: scale(1.15) !important;
+}
+
+.hoverInfo {
+  display: block !important;
+  position: absolute !important;
+  bottom: calc(100% + 12px) !important;
+  left: 50% !important;
+  top: auto !important;
+  transform: translateX(-50%) translateY(8px) !important;
+  width: 270px !important;
+  padding: 14px 16px !important;
+  background: linear-gradient(135deg, #132a42 0%, #17324d 100%) !important;
+  border: 1.5px solid #c9922f !important;
+  border-radius: 14px !important;
+  color: #f8fafc !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  box-shadow: 0 12px 30px rgba(15, 30, 46, 0.4) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease !important;
+  z-index: 99999 !important;
+}
+
+.hoverInfo::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  border-width: 7px !important;
+  border-style: solid !important;
+  border-color: #c9922f transparent transparent transparent !important;
+}
+
+.infoHead:hover .hoverInfo {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.hoverInfo strong {
+  color: #f5cf68 !important;
+  font-weight: 700 !important;
+}
+
+
+/* --- 100% WORKING SLEEK HOVER TOOLTIP CARD FOR (i) --- */
+.infoHead {
+  position: relative !important;
+  cursor: pointer !important;
+}
+
+.infoTrigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  background: rgba(201, 146, 47, 0.2) !important;
+  color: #c9922f !important;
+  border: 1px solid #c9922f !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  font-family: Arial, sans-serif !important;
+  cursor: pointer !important;
+  margin-left: 6px !important;
+  vertical-align: middle !important;
+  transition: all 0.25s ease !important;
+}
+
+.infoHead:hover .infoTrigger {
+  background: #c9922f !important;
+  color: #17324d !important;
+  transform: scale(1.15) !important;
+}
+
+.hoverInfo {
+  display: block !important;
+  position: absolute !important;
+  bottom: calc(100% + 10px) !important;
+  left: 50% !important;
+  top: auto !important;
+  transform: translateX(-50%) translateY(8px) !important;
+  width: 280px !important;
+  padding: 14px 16px !important;
+  background: linear-gradient(135deg, #132a42 0%, #17324d 100%) !important;
+  border: 1.5px solid #c9922f !important;
+  border-radius: 14px !important;
+  color: #ffffff !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  box-shadow: 0 14px 35px rgba(15, 30, 46, 0.45) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease !important;
+  z-index: 999999 !important;
+}
+
+.hoverInfo::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  border-width: 7px !important;
+  border-style: solid !important;
+  border-color: #c9922f transparent transparent transparent !important;
+}
+
+.infoHead:hover .hoverInfo,
+.infoHead:focus .hoverInfo,
+.infoHead:focus-within .hoverInfo {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.hoverInfo strong {
+  color: #f5cf68 !important;
+  font-weight: 700 !important;
+}
+
+
+/* --- GUARANTEED VISIBLE (i) TRIGGER & SLEEK HOVER CARD --- */
+th.infoHead .infoTrigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: rgba(201, 146, 47, 0.25) !important;
+  color: #c9922f !important;
+  border: 1.5px solid #c9922f !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  font-family: Arial, sans-serif !important;
+  cursor: pointer !important;
+  margin-left: 6px !important;
+  vertical-align: middle !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transition: all 0.25s ease !important;
+}
+
+th.infoHead:hover .infoTrigger {
+  background: #c9922f !important;
+  color: #17324d !important;
+  transform: scale(1.15) !important;
+}
+
+th.infoHead .hoverInfo {
+  display: block !important;
+  position: absolute !important;
+  bottom: calc(100% + 10px) !important;
+  left: 50% !important;
+  top: auto !important;
+  transform: translateX(-50%) translateY(8px) !important;
+  width: 280px !important;
+  padding: 14px 16px !important;
+  background: linear-gradient(135deg, #132a42 0%, #17324d 100%) !important;
+  border: 1.5px solid #c9922f !important;
+  border-radius: 14px !important;
+  color: #ffffff !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  box-shadow: 0 14px 35px rgba(15, 30, 46, 0.45) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease !important;
+  z-index: 999999 !important;
+}
+
+th.infoHead .hoverInfo::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  border-width: 7px !important;
+  border-style: solid !important;
+  border-color: #c9922f transparent transparent transparent !important;
+}
+
+th.infoHead:hover .hoverInfo,
+th.infoHead:focus .hoverInfo {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+th.infoHead .hoverInfo strong {
+  color: #f5cf68 !important;
+  font-weight: 700 !important;
+}
+
+
+/* --- PERFECT EQUAL TABLE ALIGNMENT FIX --- */
+.tableWrap {
+  overflow-x: auto !important;
+  width: 100% !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(23, 50, 77, 0.08) !important;
+}
+
+.tableWrap table {
+  width: 100% !important;
+  table-layout: fixed !important;
+  border-collapse: collapse !important;
+}
+
+/* Column Width Percentages */
+.tableWrap table th:first-child,
+.tableWrap table td:first-child {
+  width: 18% !important;
+}
+
+.tableWrap table th:not(:first-child),
+.tableWrap table td:not(:first-child) {
+  width: 20.5% !important;
+}
+
+.tableWrap table th,
+.tableWrap table td {
+  vertical-align: middle !important;
+  padding: 16px 14px !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  box-sizing: border-box !important;
+  word-break: break-word !important;
+}
+
+.tableWrap table th {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  padding: 18px 14px !important;
+}
+
+.tableWrap table tr {
+  border-bottom: 1px solid rgba(23, 50, 77, 0.08) !important;
+}
+
+
+/* --- GLOBAL UNCLIPPED HOVER TOOLTIP FIX --- */
+#global-info-tooltip {
+  position: fixed !important;
+  width: 290px !important;
+  padding: 14px 16px !important;
+  background: linear-gradient(135deg, #132a42 0%, #17324d 100%) !important;
+  border: 1.5px solid #c9922f !important;
+  border-radius: 14px !important;
+  color: #ffffff !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  box-shadow: 0 16px 40px rgba(15, 30, 46, 0.5) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+  z-index: 9999999 !important;
+  transform: translateY(6px) !important;
+}
+
+#global-info-tooltip.global-info-tooltip-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+#global-info-tooltip strong {
+  color: #f5cf68 !important;
+  font-weight: 700 !important;
+}
+
+.global-tooltip-arrow {
+  position: absolute !important;
+  top: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  border-width: 7px !important;
+  border-style: solid !important;
+  border-color: #c9922f transparent transparent transparent !important;
+}
+
+
+/* --- 100% BULLETPROOF PURE CSS HOVER & CLICK TOOLTIP --- */
+.tableWrap {
+  overflow: visible !important;
+}
+
+.tableWrap table {
+  overflow: visible !important;
+}
+
+.infoHead {
+  position: relative !important;
+  cursor: pointer !important;
+}
+
+.infoTrigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: #c9922f !important;
+  color: #17324d !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  font-family: Arial, sans-serif !important;
+  cursor: pointer !important;
+  margin-left: 6px !important;
+  vertical-align: middle !important;
+  pointer-events: auto !important;
+  user-select: none !important;
+}
+
+.infoHead .hoverInfo {
+  display: none !important;
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 270px !important;
+  padding: 14px 16px !important;
+  background: #132a42 !important;
+  border: 1.5px solid #c9922f !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45) !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+.infoHead:hover .hoverInfo,
+.infoHead:focus .hoverInfo,
+.infoHead.active-info .hoverInfo {
+  display: block !important;
+}
+
+.hoverInfo strong {
+  color: #f5cf68 !important;
+  font-weight: 700 !important;
+}
+
+
+/* --- PURE CSS HOVER ONLY FOR (i) INFOTRIGGER (NO CLICK) --- */
+.infoHead {
+  position: relative !important;
+}
+
+.infoTrigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: #c9922f !important;
+  color: #17324d !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  font-family: Arial, sans-serif !important;
+  cursor: pointer !important;
+  margin-left: 6px !important;
+  vertical-align: middle !important;
+}
+
+.infoHead .hoverInfo {
+  display: none !important;
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 270px !important;
+  padding: 14px 16px !important;
+  background: #132a42 !important;
+  border: 1.5px solid #c9922f !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45) !important;
+  z-index: 999999 !important;
+}
+
+.infoHead:hover .hoverInfo,
+.infoTrigger:hover + .hoverInfo {
+  display: block !important;
+}
+
+
+/* --- PURE CSS HOVER ONLY FOR INFOTRIGGER (ZERO CLICK JS) --- */
+.infoHead {
+  position: relative !important;
+}
+
+.infoTrigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  background: #c9922f !important;
+  color: #17324d !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  font-family: Arial, sans-serif !important;
+  cursor: pointer !important;
+  margin-left: 6px !important;
+  vertical-align: middle !important;
+}
+
+.infoHead .hoverInfo {
+  display: none !important;
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 270px !important;
+  padding: 14px 16px !important;
+  background: #132a42 !important;
+  border: 1.5px solid #c9922f !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45) !important;
+  z-index: 999999 !important;
+}
+
+.infoHead:hover .hoverInfo,
+.infoTrigger:hover + .hoverInfo {
+  display: block !important;
+}
+
+
+/* --- PURE CSS HOVER ONLY (NO CLICK FUNCTIONALITY ON INFOTRIGGER) --- */
+.infoHead {
+  position: relative !important;
+}
+
+.infoTrigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  background: #c9922f !important;
+  color: #17324d !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  font-family: Arial, sans-serif !important;
+  margin-left: 6px !important;
+  vertical-align: middle !important;
+  cursor: help !important;
+}
+
+.infoHead .hoverInfo {
+  display: none !important;
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 270px !important;
+  padding: 14px 16px !important;
+  background: #132a42 !important;
+  border: 1.5px solid #c9922f !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45) !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+}
+
+/* HOVER STATE ONLY */
+.infoHead:hover .hoverInfo,
+.infoTrigger:hover + .hoverInfo {
+  display: block !important;
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
@@ -1824,86 +2539,15 @@ html, body, .page, .page * {
 
 <style id="hover-info-style">
 /* Hover information for the four comparison headings in Section 03 */
-#sec-03 ~ .tableWrap th.infoHead { 
-  position: relative;
-  cursor: help;
-}
-#sec-03 ~ .tableWrap th.infoHead > .infoTrigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-left: 7px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: 800;
-  opacity: .72;
-  vertical-align: middle;
-}
-#sec-03 ~ .tableWrap th.infoHead {
-  position: relative;
-  cursor: default;
-}
-#sec-03 ~ .tableWrap th.infoHead .hoverInfo {
-  position: fixed !important;
-  z-index: 2147483647 !important;
-  left: 50% !important;
-  top: 28px !important;
-  bottom: auto !important;
-  transform: translateX(-50%) translateY(10px) !important;
-  width: min(760px, 88vw) !important;
-  max-height: min(330px, 55vh) !important;
-  overflow-y: auto;
-  box-sizing: border-box;
-  padding: 20px 24px;
-  border-radius: 14px;
-  background: #172536;
-  color: #fff;
-  text-align: left;
-  font-size: 15px;
-  line-height: 1.7;
-  font-weight: 400;
-  letter-spacing: 0 !important;
-  word-spacing: normal !important;
-  white-space: normal;
-  box-shadow: 0 18px 45px rgba(0,0,0,.32);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity .16s ease, transform .16s ease, visibility .16s ease;
-}
-#sec-03 ~ .tableWrap th.infoHead .hoverInfo::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -7px;
-  transform: translateX(-50%) rotate(45deg);
-  width: 14px;
-  height: 14px;
-  background: #172536;
-}
-#sec-03 ~ .tableWrap th.infoHead .infoTrigger:hover + .hoverInfo,
-#sec-03 ~ .tableWrap th.infoHead .infoTrigger:focus + .hoverInfo {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateX(-50%) translateY(0) !important;
-}
-#sec-03 ~ .tableWrap th.infoHead .hoverInfo strong {
-  display: inline;
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.3;
-}
+
+
+
+
+
+
+
 @media (max-width: 900px) {
-  #sec-03 ~ .tableWrap th.infoHead .hoverInfo {
-    width: 92vw !important;
-    max-height: 60vh !important;
-    font-size: 13px;
-    top: 18px !important;
-  }
-}
+  
 </style>
 
 
@@ -2029,21 +2673,21 @@ html, body, .page, .page * {
 <div class="tableInstruction">💡 <b>Hướng dẫn:</b> Click vào <span class="miniI">i</span> ở cạnh mỗi mục để biết thêm thông tin chi tiết.</div>
 <div class="tableWrap">
 <table>
-<thead><tr><th style="font-weight:700;letter-spacing:0;word-spacing:0;">TIÊU CHÍ</th><th id="cmp-cbdc" class="infoHead" tabindex="0" style="font-weight:700;letter-spacing:0;word-spacing:0;white-space:nowrap;scroll-margin-top:30px;">
-  CBDC <span class="infoTrigger" aria-hidden="true">i</span>
-  <div class="hoverInfo" role="tooltip"><strong>CBDC</strong> (Central Bank Digital Currency) là tiền kỹ thuật số do Ngân hàng Trung ương phát hành và quản lý, có giá trị tương đương tiền pháp định và được Nhà nước bảo đảm.</div>
+<thead><tr><th style="font-weight:700;letter-spacing:0;word-spacing:0;">TIÊU CHÍ</th><th id="cmp-cbdc" class="infoHead" tabindex="0">
+  CBDC <span class="infoTrigger" aria-label="Xem thông tin">i</span>
+  <div class="hoverInfo" role="tooltip"><strong>CBDC (Central Bank Digital Currency)</strong><br/>Tiền kỹ thuật số chính thức do Ngân hàng Trung ương phát hành và quản lý, có giá trị pháp lý tương đương tiền pháp định.<br/><br/>• <strong>Pháp lý:</strong> Được Nhà nước bảo hộ tuyệt đối.<br/>• <strong>Phát hành:</strong> Ngân hàng Trung ương (NHTW).</div>
 </th>
-<th id="cmp-stablecoin" class="infoHead" tabindex="0" style="font-weight:700;letter-spacing:0;word-spacing:0;white-space:nowrap;scroll-margin-top:30px;">
-  STABLECOIN <span class="infoTrigger" aria-hidden="true">i</span>
-  <div class="hoverInfo" role="tooltip"><strong>Stablecoin</strong> (tiền mã hóa ổn định) là một loại tài sản kỹ thuật số được thiết kế để duy trì giá trị ổn định bằng cách neo vào một tài sản tham chiếu bên ngoài (thường là tiền pháp định như USD, EUR…). Mục tiêu của stablecoin là kết hợp ưu điểm của tiền mã hóa như giao dịch nhanh chóng, xuyên biên giới, không qua trung gian, với sự ổn định về giá của tài sản truyền thống.</div>
+<th id="cmp-stablecoin" class="infoHead" tabindex="0">
+  STABLECOIN <span class="infoTrigger" aria-label="Xem thông tin">i</span>
+  <div class="hoverInfo" role="tooltip"><strong>Stablecoin (Tiền mã hóa ổn định giá)</strong><br/>Tài sản kỹ thuật số duy trì giá trị ổn định bằng cách neo giá vào tài sản tham chiếu bên ngoài (thường là USD, EUR).<br/><br/>• <strong>Pháp lý:</strong> Tùy thuộc quy định từng quốc gia.<br/>• <strong>Phát hành:</strong> Các tổ chức/công ty tư nhân.</div>
 </th>
-<th id="cmp-virtual" class="infoHead" tabindex="0" style="font-weight:700;letter-spacing:0;word-spacing:0;white-space:nowrap;scroll-margin-top:30px;">
-  TIỀN ẢO <span class="infoTrigger" aria-hidden="true">i</span>
-  <div class="hoverInfo" role="tooltip"><strong>Tiền ảo</strong> (Virtual Currency) là một dạng tài sản kỹ thuật số được tạo ra và lưu trữ trong môi trường điện tử. Nó không tồn tại dưới dạng vật lý như tiền giấy hay tiền xu và thường không do ngân hàng trung ương hoặc chính phủ phát hành. Tiền ảo chủ yếu được sử dụng trong một cộng đồng, hệ sinh thái kỹ thuật số nhất định hoặc trong các giao dịch trên mạng Internet.</div>
+<th id="cmp-virtual" class="infoHead" tabindex="0">
+  TIỀN ẢO <span class="infoTrigger" aria-label="Xem thông tin">i</span>
+  <div class="hoverInfo" role="tooltip"><strong>Tiền ảo (Virtual Currency)</strong><br/>Loại tiền kỹ thuật số lưu trữ trong môi trường điện tử, sử dụng chủ yếu trong cộng đồng hoặc ứng dụng/game nhất định.<br/><br/>• <strong>Pháp lý:</strong> Không được coi là tiền pháp định.<br/>• <strong>Phát hành:</strong> Nhà phát hành game/nền tảng.</div>
 </th>
-<th id="cmp-crypto" class="infoHead" tabindex="0" style="font-weight:700;letter-spacing:0;word-spacing:0;white-space:nowrap;scroll-margin-top:30px;">
-  TIỀN MÃ HÓA <span class="infoTrigger" aria-hidden="true">i</span>
-  <div class="hoverInfo" role="tooltip"><strong>Tiền mã hóa</strong> (Cryptocurrency) là loại tiền kỹ thuật số được bảo mật bằng kỹ thuật mã hóa dựa trên cơ sở khai thác sức mạnh của máy tính kết hợp Internet. Công nghệ này gọi chung là blockchain - nền tảng của tiền mã hoá. Tiền mã hóa được sử dụng để trao đổi và giao dịch, có thể hoạt động trên toàn cầu, suốt 24/7 và độc lập với các trung gian như ngân hàng và các đơn vị xử lý thanh toán.</div>
+<th id="cmp-crypto" class="infoHead" tabindex="0">
+  TIỀN MÃ HÓA <span class="infoTrigger" aria-label="Xem thông tin">i</span>
+  <div class="hoverInfo" role="tooltip"><strong>Tiền mã hóa (Cryptocurrency)</strong><br/>Tiền kỹ thuật số bảo mật bằng công nghệ mã hóa Blockchain, hoạt động phi tập trung 24/7 và độc lập với các ngân hàng.<br/><br/>• <strong>Pháp lý:</strong> Biến động cao, pháp lý khác nhau.<br/>• <strong>Phát hành:</strong> Thuật toán phi tập trung.</div>
 </th></tr></thead>
 <tbody>
 <tr><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Chủ thể phát hành</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Ngân hàng trung ương</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Công ty tư nhân</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Cá nhân/tổ chức tư nhân</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Cá nhân/tổ chức ẩn danh</td></tr>
@@ -2749,6 +3393,222 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
+
+<div id="hero-quick-modal" class="quick-modal-backdrop">
+  <div class="quick-modal-card">
+    <button id="quick-modal-close" class="quick-modal-close-btn" title="Đóng">&times;</button>
+    <div class="quick-modal-header">
+      <span id="quick-modal-icon" class="quick-modal-icon-badge">₿</span>
+      <div class="quick-modal-title-group">
+        <h3 id="quick-modal-title">CBDC</h3>
+        <span id="quick-modal-subtitle" class="quick-modal-sub">Central Bank Digital Currency</span>
+      </div>
+    </div>
+    <div class="quick-modal-body">
+      <p id="quick-modal-desc"></p>
+      <div class="quick-modal-bullets">
+        <div class="modal-bullet"><b id="modal-b1-title">Pháp lý:</b> <span id="modal-b1-desc"></span></div>
+        <div class="modal-bullet"><b id="modal-b2-title">Phát hành:</b> <span id="modal-b2-desc"></span></div>
+      </div>
+    </div>
+    <div class="quick-modal-footer">
+      <button id="quick-modal-jump-btn" class="quick-modal-action-btn">
+        <span>Xem bảng so sánh chi tiết</span> &darr;
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function() {
+  const modalData = {
+    "cmp-cbdc": {
+      title: "CBDC",
+      sub: "Central Bank Digital Currency",
+      icon: "₿",
+      desc: "Tiền kỹ thuật số chính thức do Ngân hàng Trung ương phát hành và quản lý, có giá trị pháp lý tương đương tiền pháp định.",
+      b1_title: "Pháp lý:",
+      b1_desc: "Được Nhà nước bảo hộ tuyệt đối.",
+      b2_title: "Phát hành:",
+      b2_desc: "Ngân hàng Trung ương (NHTW)."
+    },
+    "cmp-stablecoin": {
+      title: "Stablecoin",
+      sub: "Tiền mã hóa ổn định giá",
+      icon: "$",
+      desc: "Tài sản kỹ thuật số duy trì giá trị ổn định bằng cách neo giá vào tài sản tham chiếu bên ngoài (thường là USD, EUR).",
+      b1_title: "Pháp lý:",
+      b1_desc: "Tùy thuộc quy định từng quốc gia.",
+      b2_title: "Phát hành:",
+      b2_desc: "Các tổ chức/công ty tư nhân."
+    },
+    "cmp-virtual": {
+      title: "Tiền ảo",
+      sub: "Virtual Currency",
+      icon: "◌",
+      desc: "Loại tiền kỹ thuật số lưu trữ trong môi trường điện tử, sử dụng chủ yếu trong cộng đồng hoặc ứng dụng/game nhất định.",
+      b1_title: "Pháp lý:",
+      b1_desc: "Không được coi là tiền pháp định.",
+      b2_title: "Phát hành:",
+      b2_desc: "Nhà phát hành game/nền tảng."
+    },
+    "cmp-crypto": {
+      title: "Tiền mã hóa",
+      sub: "Cryptocurrency (Bitcoin, Ethereum...)",
+      icon: "⌘",
+      desc: "Tiền kỹ thuật số bảo mật bằng công nghệ mã hóa Blockchain, hoạt động phi tập trung 24/7 và độc lập với các ngân hàng.",
+      b1_title: "Pháp lý:",
+      b1_desc: "Biến động cao, pháp lý khác nhau.",
+      b2_title: "Phát hành:",
+      b2_desc: "Thuật toán phi tập trung."
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const backdrop = document.getElementById("hero-quick-modal");
+    const closeBtn = document.getElementById("quick-modal-close");
+    const jumpBtn = document.getElementById("quick-modal-jump-btn");
+
+    const modalIcon = document.getElementById("quick-modal-icon");
+    const modalTitle = document.getElementById("quick-modal-title");
+    const modalSub = document.getElementById("quick-modal-subtitle");
+    const modalDesc = document.getElementById("quick-modal-desc");
+    const b1Title = document.getElementById("modal-b1-title");
+    const b1Desc = document.getElementById("modal-b1-desc");
+    const b2Title = document.getElementById("modal-b2-title");
+    const b2Desc = document.getElementById("modal-b2-desc");
+
+    let currentTargetId = "";
+
+    function closeModal() {
+      if (backdrop) backdrop.classList.remove("active");
+    }
+
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+    if (backdrop) {
+      backdrop.addEventListener("click", function(e) {
+        if (e.target === backdrop) closeModal();
+      });
+    }
+
+    // Completely block all scrolling on click
+    document.querySelectorAll("#top-compare-nav [data-target]").forEach(tag => {
+      tag.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        currentTargetId = this.getAttribute("data-target");
+        const data = modalData[currentTargetId];
+
+        if (data && backdrop) {
+          if (modalIcon) modalIcon.textContent = data.icon;
+          if (modalTitle) modalTitle.textContent = data.title;
+          if (modalSub) modalSub.textContent = data.sub;
+          if (modalDesc) modalDesc.textContent = data.desc;
+          if (b1Title) b1Title.textContent = data.b1_title;
+          if (b1Desc) b1Desc.textContent = data.b1_desc;
+          if (b2Title) b2Title.textContent = data.b2_title;
+          if (b2Desc) b2Desc.textContent = data.b2_desc;
+
+          backdrop.classList.add("active");
+        }
+
+        return false;
+      }, true);
+    });
+
+    // Jump to Section 03 Table ONLY when user clicks the "Xem bảng so sánh chi tiết" button!
+    if (jumpBtn) {
+      jumpBtn.addEventListener("click", function() {
+        closeModal();
+
+        const sec3Header = document.getElementById("sec-03");
+        const table = document.querySelector(".tableWrap table");
+        const scrollTarget = sec3Header || table;
+
+        if (scrollTarget) {
+          const yOffset = -70;
+          const y = scrollTarget.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      });
+    }
+  });
+})();
+</script>
+
+
+
+<script>
+(function() {
+  document.addEventListener("DOMContentLoaded", function() {
+    let tooltip = document.getElementById("global-info-tooltip");
+    if (!tooltip) {
+      tooltip = document.createElement("div");
+      tooltip.id = "global-info-tooltip";
+      tooltip.className = "global-info-tooltip-hidden";
+      document.body.appendChild(tooltip);
+    }
+
+    document.querySelectorAll(".infoHead").forEach(head => {
+      const hoverInfo = head.querySelector(".hoverInfo");
+      if (!hoverInfo) return;
+
+      const htmlContent = hoverInfo.innerHTML;
+
+      function showTooltip() {
+        const trigger = head.querySelector(".infoTrigger") || head;
+        const rect = trigger.getBoundingClientRect();
+
+        tooltip.innerHTML = htmlContent + "<div class="global-tooltip-arrow"></div>";
+        tooltip.classList.add("global-info-tooltip-visible");
+
+        const tooltipRect = tooltip.getBoundingClientRect();
+        let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+        let top = rect.top - tooltipRect.height - 12;
+
+        if (left < 10) left = 10;
+        if (left + tooltipRect.width > window.innerWidth - 10) {
+          left = window.innerWidth - tooltipRect.width - 10;
+        }
+        if (top < 10) {
+          top = rect.bottom + 12;
+          const arrow = tooltip.querySelector(".global-tooltip-arrow");
+          if (arrow) {
+            arrow.style.top = "-14px";
+            arrow.style.borderColor = "transparent transparent #c9922f transparent";
+          }
+        }
+
+        tooltip.style.left = left + "px";
+        tooltip.style.top = top + "px";
+      }
+
+      function hideTooltip() {
+        tooltip.classList.remove("global-info-tooltip-visible");
+      }
+
+      head.addEventListener("mouseenter", showTooltip);
+      head.addEventListener("mouseleave", hideTooltip);
+      
+      const triggerBtn = head.querySelector(".infoTrigger");
+      if (triggerBtn) {
+        
+      }
+    });
+
+    document.addEventListener("click", function() {
+      if (tooltip) tooltip.classList.remove("global-info-tooltip-visible");
+    });
+  });
+})();
+</script>
+
+
+
+
 </body></html><style id="v42-icons-other-sections">
 /* V42: tasteful icon accents in sections 02–04 and hero; no white shimmer */
 .heroTags .tag{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;flex:0 0 auto;transition:transform .25s ease,box-shadow .25s ease}
