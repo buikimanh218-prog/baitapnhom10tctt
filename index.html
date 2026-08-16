@@ -271,6 +271,24 @@ html { scroll-behavior: smooth; }
 }
 #lightbox-close:hover { background: #c9922f; color: #17324d; }
 
+
+/* --- FIX CROPPED IMAGES (OBJECT-FIT CONTAIN) --- */
+.photo img, 
+.heroR .photo img, 
+.heroR .photo:first-child img, 
+.heroSmall img, 
+.cbdcPhoto img, 
+.visual img, 
+.photoV img,
+.photoTimeline img, 
+.cleanVisual img, 
+.p01Visual img, 
+.p01Visual20 img {
+  object-fit: contain !important;
+  object-position: center !important;
+  background-color: #eef3f6 !important;
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
