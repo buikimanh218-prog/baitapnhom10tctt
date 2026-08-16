@@ -1733,45 +1733,52 @@ th.infoHead .hoverInfo strong {
 /* --- GLOBAL UNCLIPPED HOVER TOOLTIP FIX --- */
 #global-info-tooltip {
   position: fixed !important;
-  width: 290px !important;
+  max-width: 320px !important;
+  min-width: 250px !important;
+  width: max-content !important;
   padding: 14px 16px !important;
-  background: linear-gradient(135deg, #132a42 0%, #17324d 100%) !important;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
   border: 1.5px solid #c9922f !important;
-  border-radius: 14px !important;
-  color: #ffffff !important;
-  font-size: 12.5px !important;
-  line-height: 1.55 !important;
-  font-weight: 400 !important;
+  border-radius: 12px !important;
+  color: #f8fafc !important;
+  font-family: Arial, "Segoe UI", -apple-system, sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
   text-align: left !important;
   white-space: normal !important;
-  box-shadow: 0 16px 40px rgba(15, 30, 46, 0.5) !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.45), 0 10px 15px -5px rgba(0, 0, 0, 0.3) !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-  transition: opacity 0.2s ease, transform 0.2s ease !important;
+  transform: translateY(6px) scale(0.96) !important;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s ease !important;
   z-index: 9999999 !important;
-  transform: translateY(6px) !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  box-sizing: border-box !important;
 }
 
 #global-info-tooltip.global-info-tooltip-visible {
   opacity: 1 !important;
   visibility: visible !important;
-  transform: translateY(0) !important;
+  pointer-events: auto !important;
+  transform: translateY(0) scale(1) !important;
 }
 
 #global-info-tooltip strong {
   color: #f5cf68 !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
 }
 
 .global-tooltip-arrow {
   position: absolute !important;
-  top: 100% !important;
   left: 50% !important;
-  transform: translateX(-50%) !important;
-  border-width: 7px !important;
+  width: 0 !important;
+  height: 0 !important;
   border-style: solid !important;
-  border-color: #c9922f transparent transparent transparent !important;
+  pointer-events: none !important;
 }
 
 
@@ -2872,7 +2879,7 @@ th.infoHead .hoverInfo strong {
   font-family: Arial, "Segoe UI", "Helvetica Neue", sans-serif !important;
   font-size: 13.5px !important;
   color: #f5cf68 !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
   margin-bottom: 6px !important;
   padding-bottom: 5px !important;
   border-bottom: 1px solid rgba(245, 207, 104, 0.25) !important;
@@ -2886,6 +2893,27 @@ th.infoHead .hoverInfo strong {
   line-height: 1.6 !important;
   font-weight: 400 !important;
   letter-spacing: 0.2px !important;
+}
+
+/* --- HIDE ALL INLINE CSS HOVER TOOLTIPS TO PREVENT DOUBLE TOOLTIP --- */
+.hoverInfo,
+.infoHead .hoverInfo,
+.infoHead:hover .hoverInfo,
+th.infoHead:hover .hoverInfo,
+.infoTrigger:hover + .hoverInfo {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* --- 100% REGULAR FONT WEIGHT (ZERO BOLD) FOR ALL TOOLTIP CONTENT --- */
+#global-info-tooltip,
+#global-info-tooltip *,
+.hoverInfo,
+.hoverInfo * {
+  font-weight: 400 !important;
+  font-weight: normal !important;
 }
 
 </style>
@@ -3526,7 +3554,7 @@ html, body, .page, .page * {
 </section>
 <section class="section">
 <div class="secHead" id="sec-03"><div class="no">03</div><div class="secTitle">So sánh CBDC với các tiền kỹ thuật số khác</div><div class="secSub">Năm tiêu chí cốt lõi: chủ thể phát hành, pháp lý, tỷ giá, biến động giá trị, nền tảng công nghệ.</div></div>
-<div class="tableInstruction">💡 <b>Hướng dẫn:</b> Click vào <span class="miniI">i</span> ở cạnh mỗi mục để biết thêm thông tin chi tiết.</div>
+<div class="tableInstruction">💡 <b>Hướng dẫn:</b> Rê chuột hoặc click vào biểu tượng <span class="miniI">i</span> để xem thông tin chi tiết.</div>
 <div class="tableWrap">
 <table>
 <thead><tr><th style="font-weight:700;letter-spacing:0;word-spacing:0;">TIÊU CHÍ</th><th id="cmp-cbdc" class="infoHead">
@@ -4406,55 +4434,107 @@ document.addEventListener('DOMContentLoaded',function(){
       document.body.appendChild(tooltip);
     }
 
+    let hideTimeout = null;
+
+    function clearHideTimeout() {
+      if (hideTimeout) {
+        clearTimeout(hideTimeout);
+        hideTimeout = null;
+      }
+    }
+
+    function scheduleHide() {
+      clearHideTimeout();
+      hideTimeout = setTimeout(function() {
+        if (tooltip) tooltip.classList.remove("global-info-tooltip-visible");
+      }, 300);
+    }
+
+    tooltip.addEventListener("mouseenter", function() {
+      clearHideTimeout();
+    });
+
+    tooltip.addEventListener("mouseleave", function() {
+      scheduleHide();
+    });
+
     document.querySelectorAll(".infoHead").forEach(head => {
       const hoverInfo = head.querySelector(".hoverInfo");
-      if (!hoverInfo) return;
-
-      const htmlContent = hoverInfo.innerHTML;
+      if (hoverInfo) {
+        head.dataset.tooltipContent = hoverInfo.innerHTML;
+        hoverInfo.remove(); // REMOVE INLINE HOVERINFO ELEMENT FROM DOM TO PREVENT DOUBLE TOOLTIP
+      }
 
       function showTooltip() {
-        const trigger = head.querySelector(".infoTrigger") || head;
-        const rect = trigger.getBoundingClientRect();
+        clearHideTimeout();
+        const htmlContent = head.dataset.tooltipContent;
+        if (!htmlContent) return;
 
-        tooltip.innerHTML = htmlContent + "<div class="global-tooltip-arrow"></div>";
-        tooltip.classList.add("global-info-tooltip-visible");
+        const trigger = head.querySelector(".infoTrigger") || head;
+        const triggerRect = trigger.getBoundingClientRect();
+        const headRect = head.getBoundingClientRect();
+
+        tooltip.innerHTML = htmlContent + '<div class="global-tooltip-arrow"></div>';
+        tooltip.style.visibility = "hidden";
+        tooltip.classList.remove("global-info-tooltip-visible");
 
         const tooltipRect = tooltip.getBoundingClientRect();
-        let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
-        let top = rect.top - tooltipRect.height - 12;
 
-        if (left < 10) left = 10;
-        if (left + tooltipRect.width > window.innerWidth - 10) {
-          left = window.innerWidth - tooltipRect.width - 10;
+        // Position horizontally centered over trigger
+        let left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
+        if (left < 12) left = 12;
+        if (left + tooltipRect.width > window.innerWidth - 12) {
+          left = window.innerWidth - tooltipRect.width - 12;
         }
+
+        // POSITION ALWAYS 14PX ABOVE THE TOP EDGE OF THE TABLE HEADER ROW SO IT NEVER OVERLAPS THE TABLE!
+        let top = headRect.top - tooltipRect.height - 14;
+        let isAbove = true;
+
         if (top < 10) {
-          top = rect.bottom + 12;
-          const arrow = tooltip.querySelector(".global-tooltip-arrow");
-          if (arrow) {
-            arrow.style.top = "-14px";
+          top = headRect.bottom + 14;
+          isAbove = false;
+        }
+
+        const arrow = tooltip.querySelector(".global-tooltip-arrow");
+        if (arrow) {
+          const triggerCenter = triggerRect.left + (triggerRect.width / 2);
+          let arrowLeft = triggerCenter - left;
+          arrowLeft = Math.max(16, Math.min(tooltipRect.width - 16, arrowLeft));
+          arrow.style.left = arrowLeft + "px";
+
+          if (isAbove) {
+            arrow.style.top = "100%";
+            arrow.style.bottom = "auto";
+            arrow.style.borderWidth = "7px 7px 0 7px";
+            arrow.style.borderColor = "#c9922f transparent transparent transparent";
+          } else {
+            arrow.style.top = "-7px";
+            arrow.style.bottom = "auto";
+            arrow.style.borderWidth = "0 7px 7px 7px";
             arrow.style.borderColor = "transparent transparent #c9922f transparent";
           }
         }
 
         tooltip.style.left = left + "px";
         tooltip.style.top = top + "px";
-      }
+        tooltip.style.visibility = "";
 
-      function hideTooltip() {
-        tooltip.classList.remove("global-info-tooltip-visible");
+        void tooltip.offsetWidth; // Force layout repaint before animation starts
+
+        tooltip.classList.add("global-info-tooltip-visible");
       }
 
       head.addEventListener("mouseenter", showTooltip);
-      head.addEventListener("mouseleave", hideTooltip);
-      
-      const triggerBtn = head.querySelector(".infoTrigger");
-      if (triggerBtn) {
-        
-      }
+      head.addEventListener("mouseleave", scheduleHide);
+      head.addEventListener("click", showTooltip);
     });
 
-    document.addEventListener("click", function() {
-      if (tooltip) tooltip.classList.remove("global-info-tooltip-visible");
+    document.addEventListener("click", function(e) {
+      if (tooltip && !tooltip.contains(e.target) && !e.target.closest(".infoHead")) {
+        clearHideTimeout();
+        tooltip.classList.remove("global-info-tooltip-visible");
+      }
     });
   });
 })();
@@ -4483,60 +4563,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 
-<script>
-(function() {
-  const infoMap = {
-    "cmp-cbdc": {
-      title: "CBDC (Central Bank Digital Currency)",
-      icon: "₿",
-      desc: "Tiền kỹ thuật số chính thức do Ngân hàng Trung ương phát hành và quản lý, có giá trị tương đương tiền pháp định."
-    },
-    "cmp-stablecoin": {
-      title: "Stablecoin (Tiền mã hóa ổn định giá)",
-      icon: "$",
-      desc: "Tài sản kỹ thuật số duy trì giá trị bằng cách neo giá vào tài sản tham chiếu bên ngoài (thường là USD, EUR)."
-    },
-    "cmp-virtual": {
-      title: "Tiền ảo (Virtual Currency)",
-      icon: "◌",
-      desc: "Dạng tài sản điện tử lưu trữ và giao dịch trong một cộng đồng hoặc hệ sinh thái khép kín (như game, ứng dụng)."
-    },
-    "cmp-crypto": {
-      title: "Tiền mã hóa (Cryptocurrency)",
-      icon: "⌘",
-      desc: "Tiền kỹ thuật số bảo mật bằng công nghệ Blockchain, hoạt động phi tập trung 24/7 và độc lập với ngân hàng."
-    }
-  };
 
-  document.addEventListener("DOMContentLoaded", function() {
-    const subRow = document.getElementById("table-subhead-row");
-    const sIcon = document.getElementById("subhead-icon");
-    const sTitle = document.getElementById("subhead-title");
-    const sDesc = document.getElementById("subhead-desc");
-
-    if (!subRow) return;
-
-    document.querySelectorAll(".infoHead").forEach(head => {
-      head.addEventListener("mouseenter", function() {
-        const id = this.id;
-        const data = infoMap[id];
-        if (data) {
-          if (sIcon) sIcon.textContent = data.icon;
-          if (sTitle) sTitle.textContent = data.title;
-          if (sDesc) sDesc.textContent = data.desc;
-          subRow.classList.remove("table-subhead-collapsed");
-          subRow.classList.add("table-subhead-expanded");
-        }
-      });
-
-      head.addEventListener("mouseleave", function() {
-        subRow.classList.remove("table-subhead-expanded");
-        subRow.classList.add("table-subhead-collapsed");
-      });
-    });
-  });
-})();
-</script>
 
 </body></html><style id="v42-icons-other-sections">
 /* V42: tasteful icon accents in sections 02–04 and hero; no white shimmer */
