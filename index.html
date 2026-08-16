@@ -1466,6 +1466,91 @@ document.addEventListener("DOMContentLoaded", function() {
 })();
 </script>
 
+
+<script>
+(function() {
+  document.addEventListener("DOMContentLoaded", function() {
+    const stripBar = document.getElementById("timeline-strip");
+    const stripItems = document.querySelectorAll(".strip div");
+    const cleanCards = document.querySelectorAll(".p01Clean .cleanCard");
+
+    function updateProgress(index) {
+      if (stripBar && stripItems.length > 1) {
+        const percent = (index / (stripItems.length - 1)) * 100;
+        stripBar.style.setProperty("--timeline-progress", percent + "%");
+      }
+    }
+
+    function activateCardAndNode(index, shouldScroll) {
+      if (index < 0 || index >= cleanCards.length) return;
+
+      stripItems.forEach(s => s.classList.remove("strip-active"));
+      cleanCards.forEach(c => c.classList.remove("card-highlight"));
+
+      if (stripItems[index]) stripItems[index].classList.add("strip-active");
+      if (cleanCards[index]) {
+        cleanCards[index].classList.add("card-highlight");
+      }
+
+      updateProgress(index);
+
+      if (shouldScroll && cleanCards[index]) {
+        const cardRect = cleanCards[index].getBoundingClientRect();
+        const targetY = cardRect.top + window.pageYOffset - (window.innerHeight / 2) + (cardRect.height / 2);
+        window.scrollTo({ top: targetY, behavior: "smooth" });
+      }
+    }
+
+    // 1. Effortless Hover Trigger (No click needed!)
+    stripItems.forEach((item, index) => {
+      item.addEventListener("mouseenter", function() {
+        activateCardAndNode(index, false);
+      });
+      item.addEventListener("click", function() {
+        activateCardAndNode(index, true);
+      });
+    });
+
+    cleanCards.forEach((card, index) => {
+      card.addEventListener("mouseenter", function() {
+        activateCardAndNode(index, false);
+      });
+    });
+
+    // 2. Automatic Scroll-Spy Sync (Updates automatically as you scroll!)
+    let isTicking = false;
+    window.addEventListener("scroll", function() {
+      if (!isTicking) {
+        window.requestAnimationFrame(function() {
+          const viewportCenter = window.innerHeight / 2;
+          let closestIndex = -1;
+          let minDistance = Infinity;
+
+          cleanCards.forEach((card, i) => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.top + (rect.height / 2);
+            const distance = Math.abs(viewportCenter - cardCenter);
+
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              if (distance < minDistance) {
+                minDistance = distance;
+                closestIndex = i;
+              }
+            }
+          });
+
+          if (closestIndex !== -1) {
+            activateCardAndNode(closestIndex, false);
+          }
+          isTicking = false;
+        });
+        isTicking = true;
+      }
+    });
+  });
+})();
+</script>
+
 </body></html><style id="v42-icons-other-sections">
 /* V42: tasteful icon accents in sections 02–04 and hero; no white shimmer */
 .heroTags .tag{display:inline-flex;align-items:center;gap:7px;transition:transform .25s ease,box-shadow .25s ease}
