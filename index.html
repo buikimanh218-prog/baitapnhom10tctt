@@ -15,11 +15,11 @@ body{font-family:InterLocal,Arial,sans-serif;color:#172f48}
 .serif{font-family:SourceSerif,Georgia,serif}
 .hero{display:grid;grid-template-columns:48% 52%;height:700px;background:#f5f0e6}
 .heroL{padding:52px 44px 45px 58px}
-.kicker{font-size:15px;font-weight:800;letter-spacing:1.6px;color:#687789}
+.kicker{font-size:14px;font-weight:800;letter-spacing:1.2px;color:#687789;white-space:nowrap}
 .hero h1{font-family:SourceSerif,Georgia,serif;font-size:64px;line-height:1.00;letter-spacing:0;color:var(--navy);margin:48px 0 0;font-weight:800}
 .hero h1 .gold{color:var(--gold)}
 .heroDesc{font-size:18px;line-height:1.6;color:#506274;margin-top:26px;max-width:510px}
-.heroTags{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.heroTags{display:flex;gap:10px;flex-wrap:nowrap;white-space:nowrap;margin-top:28px;align-items:center}
 .tag{font-size:12px;font-weight:800;letter-spacing:.9px;border:1px solid #cbd5dc;border-radius:99px;padding:10px 13px;background:#fff8}
 .heroR{padding:35px 42px 35px 16px;display:grid;grid-template-rows:1fr 145px;gap:16px}
 .photo{position:relative;overflow:hidden;border-radius:24px;background:#cdd6dc}
@@ -88,7 +88,7 @@ body{font-family:InterLocal,Arial,sans-serif;color:#172f48}
 .call{background:#eef2f4;border-radius:12px;padding:14px 15px;min-height:100px}
 .call b{font-size:11px;display:block;color:var(--navy)}
 .call span{font-size:12px;line-height:1.45;color:#647486;display:block;margin-top:5px}
-.tableWrap{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:white}
+.tableWrap{border:1px solid var(--line);border-radius:18px;overflow:visible;background:white}
 table{width:100%;border-collapse:collapse;font-size:15px}
 th{padding:17px 14px;color:#fff;text-align:left;font-size:12px;letter-spacing:.6px}
 th:nth-child(1){background:#edf1f2;color:var(--navy)}th:nth-child(2){background:#17324d}th:nth-child(3){background:#647b8b}th:nth-child(4){background:#9b722b}th:nth-child(5){background:#c18c2f}
@@ -205,7 +205,7 @@ html { scroll-behavior: smooth; }
   font-size: 22px;
   font-weight: bold;
   cursor: pointer;
-  z-index: 9999;
+  z-index: 100000;
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
@@ -1821,6 +1821,115 @@ html, body, .page, .page * {
 @keyframes p46Shadow{from{transform:scaleX(.9);opacity:.10}to{transform:scaleX(1.08);opacity:.16}}
 @media(prefers-reduced-motion:reduce){.p01Walker *,.p01Walker{animation:none!important}}
 </style>
+
+<style id="hover-info-style">
+/* Hover information for the four comparison headings in Section 03 */
+#sec-03 ~ .tableWrap th.infoHead { 
+  position: relative;
+  cursor: help;
+}
+#sec-03 ~ .tableWrap th.infoHead > .infoTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 7px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 800;
+  opacity: .72;
+  vertical-align: middle;
+}
+#sec-03 ~ .tableWrap th.infoHead {
+  position: relative;
+  cursor: default;
+}
+#sec-03 ~ .tableWrap th.infoHead .hoverInfo {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  left: 50% !important;
+  top: 28px !important;
+  bottom: auto !important;
+  transform: translateX(-50%) translateY(10px) !important;
+  width: min(760px, 88vw) !important;
+  max-height: min(330px, 55vh) !important;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: #172536;
+  color: #fff;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+  white-space: normal;
+  box-shadow: 0 18px 45px rgba(0,0,0,.32);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease, visibility .16s ease;
+}
+#sec-03 ~ .tableWrap th.infoHead .hoverInfo::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  transform: translateX(-50%) rotate(45deg);
+  width: 14px;
+  height: 14px;
+  background: #172536;
+}
+#sec-03 ~ .tableWrap th.infoHead .infoTrigger:hover + .hoverInfo,
+#sec-03 ~ .tableWrap th.infoHead .infoTrigger:focus + .hoverInfo {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+#sec-03 ~ .tableWrap th.infoHead .hoverInfo strong {
+  display: inline;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.3;
+}
+@media (max-width: 900px) {
+  #sec-03 ~ .tableWrap th.infoHead .hoverInfo {
+    width: 92vw !important;
+    max-height: 60vh !important;
+    font-size: 13px;
+    top: 18px !important;
+  }
+}
+</style>
+
+
+<style>
+.tableInstruction{margin:14px 0 12px;text-align:center;font-size:15px;line-height:1.5;color:#5b6875;font-weight:500;}
+.tableInstruction .miniI{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border:1.5px solid #c9922f;border-radius:50%;font-size:12px;font-weight:700;color:#c9922f;font-style:italic;vertical-align:-2px;margin:0 3px;}
+</style>
+
+<style id="remove-section03-tech-icon-final">
+/* Section 03: remove decorative icon from Nền tảng công nghệ */
+.tech-row::before,.tech-row::after,.tech-row th::before,.tech-row th::after,.tech-row td::before,.tech-row td::after{content:none!important;display:none!important;background:none!important;}
+.tech-row .icon,.tech-row .tech-icon,.tech-row .techIcon,.tech-row .icon-tech,.tech-row svg,.tech-row img{display:none!important;}
+</style>
+
+<style id="section03-tech-row-same-color">
+/* Phần 03: ô Nền tảng công nghệ dùng cùng màu với các ô tiêu chí bên trái */
+#sec-03 ~ .tableWrap .tech-row > th:first-child{background:#f5f7f8!important;color:#263e53!important;}
+.heroTags .tag{ text-decoration:none; color:inherit; cursor:pointer; }
+.heroTags .tag:visited{ color:inherit; }
+.heroTags .tag:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+</style>
+
+<style id="top-nav-icons-match-table">
+#top-compare-nav .tag{display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;}
+#top-compare-nav .navTopicIcon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;margin-right:2px;border:1px solid currentColor;border-radius:50%;background:transparent;color:#c9922f;font-size:11px;line-height:1;font-weight:800;vertical-align:middle;font-family:Arial,"Segoe UI Symbol",sans-serif;}
+</style>
 </head>
 <body>
 
@@ -1875,7 +1984,7 @@ html, body, .page, .page * {
 <div class="kicker">BÁO CÁO CHUYÊN ĐỀ   |   TÀI CHÍNH TIỀN TỆ – NHÓM 10</div>
 <h1>Các hình thái tiền tệ và một số nét tiêu biểu của tiền kỹ thuật số NHTW (CBDC) so với các tiền kỹ thuật số khác</h1>
 <p class="heroDesc">Lược sử các hình thái tiền tệ, so sánh CBDC với các loại tiền kỹ thuật số khác, và đánh giá ưu – nhược điểm của CBDC đối với đời sống hiện nay.</p>
-<div class="heroTags"><span class="tag">TIỀN TỆ</span><span class="tag">CBDC</span><span class="tag">THANH TOÁN SỐ</span><span class="tag">NGÂN HÀNG TRUNG ƯƠNG</span></div>
+<div class="heroTags" id="top-compare-nav"><a class="tag" href="#cmp-cbdc" data-target="cmp-cbdc"><span class="navTopicIcon" aria-hidden="true">₿</span> CBDC</a><a class="tag" href="#cmp-stablecoin" data-target="cmp-stablecoin"><span class="navTopicIcon" aria-hidden="true">$</span> STABLECOIN</a><a class="tag" href="#cmp-virtual" data-target="cmp-virtual"><span class="navTopicIcon" aria-hidden="true">◌</span> TIỀN ẢO</a><a class="tag" href="#cmp-crypto" data-target="cmp-crypto"><span class="navTopicIcon" aria-hidden="true">⌘</span> TIỀN MÃ HÓA</a></div>
 </div>
 <div class="heroR">
 <div class="photo"><img loading="lazy" decoding="async" src="assets/img_1.svg"/><div class="heroBadge"><b>CBDC</b><span>TIỀN PHÁP ĐỊNH TRÊN HẠ TẦNG SỐ</span></div></div>
@@ -1916,16 +2025,33 @@ html, body, .page, .page * {
 </div>
 </section>
 <section class="section">
-<div class="secHead" id="sec-03"><div class="no">03</div><div class="secTitle">So sánh CBDC với các tiền kỹ thuật số khác</div><div class="secSub">Bốn tiêu chí cốt lõi: chủ thể phát hành, pháp lý, kiểm soát và mức độ biến động giá trị.</div></div>
+<div class="secHead" id="sec-03"><div class="no">03</div><div class="secTitle">So sánh CBDC với các tiền kỹ thuật số khác</div><div class="secSub">Năm tiêu chí cốt lõi: chủ thể phát hành, pháp lý, tỷ giá, biến động giá trị, nền tảng công nghệ.</div></div>
+<div class="tableInstruction">💡 <b>Hướng dẫn:</b> Click vào <span class="miniI">i</span> ở cạnh mỗi mục để biết thêm thông tin chi tiết.</div>
 <div class="tableWrap">
 <table>
-<thead><tr><th style="font-weight:700;letter-spacing:0;word-spacing:0;">TIÊU CHÍ</th><th style="font-weight:700;letter-spacing:0;word-spacing:0;">CBDC</th><th style="font-weight:700;letter-spacing:0;word-spacing:0;">STABLECOIN</th><th style="font-weight:700;letter-spacing:0;word-spacing:0;">TIỀN ẢO</th><th style="font-weight:700;letter-spacing:0;word-spacing:0;">TIỀN MÃ HOÁ</th></tr></thead>
+<thead><tr><th style="font-weight:700;letter-spacing:0;word-spacing:0;">TIÊU CHÍ</th><th id="cmp-cbdc" class="infoHead" tabindex="0" style="font-weight:700;letter-spacing:0;word-spacing:0;white-space:nowrap;scroll-margin-top:30px;">
+  CBDC <span class="infoTrigger" aria-hidden="true">i</span>
+  <div class="hoverInfo" role="tooltip"><strong>CBDC</strong> (Central Bank Digital Currency) là tiền kỹ thuật số do Ngân hàng Trung ương phát hành và quản lý, có giá trị tương đương tiền pháp định và được Nhà nước bảo đảm.</div>
+</th>
+<th id="cmp-stablecoin" class="infoHead" tabindex="0" style="font-weight:700;letter-spacing:0;word-spacing:0;white-space:nowrap;scroll-margin-top:30px;">
+  STABLECOIN <span class="infoTrigger" aria-hidden="true">i</span>
+  <div class="hoverInfo" role="tooltip"><strong>Stablecoin</strong> (tiền mã hóa ổn định) là một loại tài sản kỹ thuật số được thiết kế để duy trì giá trị ổn định bằng cách neo vào một tài sản tham chiếu bên ngoài (thường là tiền pháp định như USD, EUR…). Mục tiêu của stablecoin là kết hợp ưu điểm của tiền mã hóa như giao dịch nhanh chóng, xuyên biên giới, không qua trung gian, với sự ổn định về giá của tài sản truyền thống.</div>
+</th>
+<th id="cmp-virtual" class="infoHead" tabindex="0" style="font-weight:700;letter-spacing:0;word-spacing:0;white-space:nowrap;scroll-margin-top:30px;">
+  TIỀN ẢO <span class="infoTrigger" aria-hidden="true">i</span>
+  <div class="hoverInfo" role="tooltip"><strong>Tiền ảo</strong> (Virtual Currency) là một dạng tài sản kỹ thuật số được tạo ra và lưu trữ trong môi trường điện tử. Nó không tồn tại dưới dạng vật lý như tiền giấy hay tiền xu và thường không do ngân hàng trung ương hoặc chính phủ phát hành. Tiền ảo chủ yếu được sử dụng trong một cộng đồng, hệ sinh thái kỹ thuật số nhất định hoặc trong các giao dịch trên mạng Internet.</div>
+</th>
+<th id="cmp-crypto" class="infoHead" tabindex="0" style="font-weight:700;letter-spacing:0;word-spacing:0;white-space:nowrap;scroll-margin-top:30px;">
+  TIỀN MÃ HÓA <span class="infoTrigger" aria-hidden="true">i</span>
+  <div class="hoverInfo" role="tooltip"><strong>Tiền mã hóa</strong> (Cryptocurrency) là loại tiền kỹ thuật số được bảo mật bằng kỹ thuật mã hóa dựa trên cơ sở khai thác sức mạnh của máy tính kết hợp Internet. Công nghệ này gọi chung là blockchain - nền tảng của tiền mã hoá. Tiền mã hóa được sử dụng để trao đổi và giao dịch, có thể hoạt động trên toàn cầu, suốt 24/7 và độc lập với các trung gian như ngân hàng và các đơn vị xử lý thanh toán.</div>
+</th></tr></thead>
 <tbody>
 <tr><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Chủ thể phát hành</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Ngân hàng trung ương</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Công ty tư nhân</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Cá nhân/tổ chức tư nhân</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Cá nhân/tổ chức ẩn danh</td></tr>
 <tr><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Pháp lý</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Tiền pháp định</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Không phải tiền pháp định</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Không được đảm bảo chuyển đổi thành tiền pháp định</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Không được công nhận hợp pháp</td></tr>
-<tr><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Ví dụ</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">e-CNY, Sand Dollar...</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">USDT, USDC...</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Tiền trong game, tiền khuyến mãi trên nền tảng mua sắm</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Bitcoin, Ethereum...</td></tr>
-<tr><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Tỷ giá</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Cố định 1:1 theo tiền pháp định</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Neo giá 1:1 theo USD hoặc các tài sản</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Thường do tổ chức phát hành hoặc cung - cầu trong hệ thống quyết định</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Luôn biến động thị trường</td></tr><tr class="tech-row"><th style="font-weight:700;letter-spacing:0;word-spacing:0;">Nền tảng công nghệ</th><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Blockchain/DLT hoặc hệ thống tập trung truyền thống</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Blockchain công khai (Ethereum/Tron/Solana...)</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Thường sử dụng cơ sở dữ liệu/hệ thống riêng của tổ chức</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Blockchain công khai, phi tập trung</td></tr>
+<tr><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Tỷ giá</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Cố định 1:1 theo tiền pháp định</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Neo giá 1:1 theo USD hoặc các tài sản</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Thường do tổ chức phát hành hoặc cung - cầu trong hệ thống quyết định</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Luôn biến động thị trường</td></tr>
 <tr><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Biến động giá trị</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Không đổi</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Ít biến động</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Tùy loại</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Rất mạnh</td></tr>
+<tr class="tech-row"><th style="font-weight:700;letter-spacing:0;word-spacing:0;">Nền tảng công nghệ</th><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Blockchain/DLT hoặc hệ thống tập trung truyền thống</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Blockchain công khai (Ethereum/Tron/Solana...)</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Thường sử dụng cơ sở dữ liệu/hệ thống riêng của tổ chức</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Blockchain công khai, phi tập trung</td></tr>
+<tr><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Ví dụ</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">e-CNY, Sand Dollar...</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">USDT, USDC...</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Tiền trong game, tiền khuyến mãi trên nền tảng mua sắm</td><td style="font-weight:600;letter-spacing:0;word-spacing:0;">Bitcoin, Ethereum...</td></tr>
 </tbody>
 </table>
 </div>
@@ -2601,11 +2727,33 @@ document.addEventListener("DOMContentLoaded", function() {
 })();
 </script>
 
+<style id="exact-top-nav">
+#top-compare-nav .tag{cursor:pointer;text-decoration:none;}
+#cmp-cbdc,#cmp-stablecoin,#cmp-virtual,#cmp-crypto{scroll-margin-top:120px;position:relative;}
+@keyframes targetBounce{0%{transform:translateY(0) scale(1);filter:brightness(1);box-shadow:none}25%{transform:translateY(-9px) scale(1.025);filter:brightness(1.12);box-shadow:0 10px 18px rgba(23,50,77,.18)}50%{transform:translateY(2px) scale(.995);filter:brightness(1.04);box-shadow:0 4px 9px rgba(23,50,77,.10)}72%{transform:translateY(-4px) scale(1.01);filter:brightness(1.08);box-shadow:0 7px 13px rgba(23,50,77,.14)}100%{transform:translateY(0) scale(1);filter:brightness(1);box-shadow:none}}
+.infoHead.targetPulse{animation:targetBounce .85s cubic-bezier(.2,.8,.3,1);z-index:5;}
+</style>
+<script id="exact-top-nav-js">
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('#top-compare-nav [data-target]').forEach(function(link){
+    link.addEventListener('click',function(e){
+      e.preventDefault();
+      var target=document.getElementById(this.dataset.target);
+      if(!target) return;
+      target.scrollIntoView({behavior:'smooth',block:'center',inline:'center'});
+      target.classList.remove('targetPulse');
+      void target.offsetWidth;
+      target.classList.add('targetPulse');
+      setTimeout(function(){target.classList.remove('targetPulse');},1000);
+    });
+  });
+});
+</script>
 </body></html><style id="v42-icons-other-sections">
 /* V42: tasteful icon accents in sections 02–04 and hero; no white shimmer */
-.heroTags .tag{display:inline-flex;align-items:center;gap:7px;transition:transform .25s ease,box-shadow .25s ease}
+.heroTags .tag{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;flex:0 0 auto;transition:transform .25s ease,box-shadow .25s ease}
 .heroTags .tag:hover{transform:translateY(-3px);box-shadow:0 7px 14px rgba(23,50,77,.12)}
-.heroTags .tag:nth-child(1)::before{content:'◈';font-size:12px}.heroTags .tag:nth-child(2)::before{content:'₿';font-weight:800}.heroTags .tag:nth-child(3)::before{content:'↔';font-weight:800}.heroTags .tag:nth-child(4)::before{content:'🏛';font-family:"Segoe UI Emoji","Apple Color Emoji",sans-serif}
+
 
 /* Section 02 — small topic icons beside the CBDC definition/points */
 .cbdcGrid .definition{position:relative}
