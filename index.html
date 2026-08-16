@@ -535,6 +535,40 @@ html {
   100% { transform: translateY(-18px) scale(1.05) translateZ(0); }
 }
 
+
+/* --- FLICKER-FREE CALM TRANSITIONS --- */
+.strip div::before {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.3s ease, 
+              box-shadow 0.3s ease, 
+              border-color 0.3s ease !important;
+  animation: none !important;
+}
+
+.strip div.strip-active::before {
+  background: #c9922f !important;
+  color: #17324d !important;
+  border-color: #ffffff !important;
+  transform: scale(1.24) translateY(-2px) !important;
+  box-shadow: 0 0 0 4px #17324d, 0 6px 20px rgba(201, 146, 47, 0.7) !important;
+  animation: none !important;
+}
+
+.p01Clean .cleanCard {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s ease !important;
+  animation: none !important;
+}
+
+.p01Clean .cleanCard.card-highlight {
+  transform: translateY(-16px) scale(1.04) translateZ(0) !important;
+  box-shadow: 0 20px 45px rgba(201, 146, 47, 0.35), 0 0 0 3px #c9922f, 0 10px 20px rgba(23, 50, 77, 0.18) !important;
+  border-color: #c9922f !important;
+  z-index: 10 !important;
+  animation: none !important;
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
@@ -1545,6 +1579,95 @@ document.addEventListener("DOMContentLoaded", function() {
           isTicking = false;
         });
         isTicking = true;
+      }
+    });
+  });
+})();
+</script>
+
+
+<script>
+(function() {
+  document.addEventListener("DOMContentLoaded", function() {
+    const stripBar = document.getElementById("timeline-strip");
+    const stripItems = document.querySelectorAll(".strip div");
+    const cleanCards = document.querySelectorAll(".p01Clean .cleanCard");
+
+    let activeIndex = -1;
+
+    function updateProgress(index) {
+      if (stripBar && stripItems.length > 1) {
+        const percent = (index / (stripItems.length - 1)) * 100;
+        stripBar.style.setProperty("--timeline-progress", percent + "%");
+      }
+    }
+
+    function setActiveIndex(index, shouldScroll) {
+      if (index < 0 || index >= cleanCards.length) return;
+      if (index === activeIndex && !shouldScroll) return; // PREVENT REPEAT FLICKERING
+
+      activeIndex = index;
+
+      stripItems.forEach((s, i) => {
+        if (i === index) s.classList.add("strip-active");
+        else s.classList.remove("strip-active");
+      });
+
+      cleanCards.forEach((c, i) => {
+        if (i === index) c.classList.add("card-highlight");
+        else c.classList.remove("card-highlight");
+      });
+
+      updateProgress(index);
+
+      if (shouldScroll && cleanCards[index]) {
+        const cardRect = cleanCards[index].getBoundingClientRect();
+        const targetY = cardRect.top + window.pageYOffset - (window.innerHeight / 2) + (cardRect.height / 2);
+        window.scrollTo({ top: targetY, behavior: "smooth" });
+      }
+    }
+
+    // 1. Click to active (Stable & Smooth)
+    stripItems.forEach((item, index) => {
+      item.addEventListener("click", function() {
+        setActiveIndex(index, true);
+      });
+    });
+
+    cleanCards.forEach((card, index) => {
+      card.addEventListener("click", function() {
+        setActiveIndex(index, false);
+      });
+    });
+
+    // 2. Stable Scroll-Spy with Hysteresis Threshold (Zero flickering during scroll)
+    let scrollTicking = false;
+    window.addEventListener("scroll", function() {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(function() {
+          const viewportCenter = window.innerHeight / 2;
+          let bestIndex = -1;
+          let minDistance = Infinity;
+
+          cleanCards.forEach((card, i) => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.top + (rect.height / 2);
+            const distance = Math.abs(viewportCenter - cardCenter);
+
+            if (rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15) {
+              if (distance < minDistance) {
+                minDistance = distance;
+                bestIndex = i;
+              }
+            }
+          });
+
+          if (bestIndex !== -1 && bestIndex !== activeIndex) {
+            setActiveIndex(bestIndex, false);
+          }
+          scrollTicking = false;
+        });
+        scrollTicking = true;
       }
     });
   });
