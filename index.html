@@ -592,6 +592,590 @@ html {
   padding: 0 !important;
 }
 
+
+/* --- HAMBURGER MENU 3 DẤU GẠCH STYLES --- */
+#hamburger-btn {
+  position: fixed !important;
+  left: 22px !important;
+  top: 22px !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 14px !important;
+  background: #17324d !important;
+  border: 1.5px solid #c9922f !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+  box-shadow: 0 8px 22px rgba(23, 50, 77, 0.3) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#hamburger-btn:hover {
+  background: #c9922f !important;
+  border-color: #17324d !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 10px 25px rgba(201, 146, 47, 0.45) !important;
+}
+
+#hamburger-btn .bar {
+  width: 20px !important;
+  height: 2.5px !important;
+  background: #f5cf68 !important;
+  border-radius: 99px !important;
+  transition: background 0.3s ease !important;
+}
+
+#hamburger-btn:hover .bar {
+  background: #17324d !important;
+}
+
+#sidebar-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(15, 30, 46, 0.65) !important;
+  backdrop-filter: blur(4px) !important;
+  z-index: 19999 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.35s ease !important;
+}
+
+#sidebar-backdrop.active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+#sidebar-drawer {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 290px !important;
+  background: linear-gradient(180deg, #132a42 0%, #17324d 100%) !important;
+  border-right: 1.5px solid rgba(201, 146, 47, 0.4) !important;
+  z-index: 20000 !important;
+  transform: translateX(-100%) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 15px 0 40px rgba(0, 0, 0, 0.35) !important;
+  padding: 24px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#sidebar-drawer.active {
+  transform: translateX(0) !important;
+}
+
+.sidebar-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-bottom: 18px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  margin-bottom: 24px !important;
+}
+
+.sidebar-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-family: SourceSerif, Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: #c9922f !important;
+  letter-spacing: 0.5px !important;
+}
+
+#sidebar-close-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-size: 24px !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.25s ease !important;
+}
+
+#sidebar-close-btn:hover {
+  background: #c9922f !important;
+  color: #17324d !important;
+}
+
+.sidebar-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.sidebar-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 12px 16px !important;
+  border-radius: 14px !important;
+  text-decoration: none !important;
+  color: #d1dde6 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+  background: #c9922f !important;
+  color: #17324d !important;
+  border-color: #c9922f !important;
+  transform: translateX(4px) !important;
+  box-shadow: 0 6px 16px rgba(201, 146, 47, 0.3) !important;
+}
+
+.sidebar-link .link-num {
+  font-family: SourceSerif, Georgia, serif !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  color: #f5cf68 !important;
+}
+
+.sidebar-link:hover .link-num, .sidebar-link.active .link-num {
+  color: #17324d !important;
+}
+
+.sidebar-link .link-text {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+}
+
+
+/* --- ULTRA-MINIMALIST CLEAN 3-LINE HAMBURGER ICON --- */
+#hamburger-btn {
+  position: fixed !important;
+  left: 28px !important;
+  top: 28px !important;
+  width: 38px !important;
+  height: 38px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+  padding: 0 !important;
+  transition: opacity 0.25s ease !important;
+}
+
+#hamburger-btn .bar {
+  height: 2px !important;
+  background: #17324d !important;
+  border-radius: 99px !important;
+  transition: background 0.25s ease, width 0.25s ease !important;
+}
+
+#hamburger-btn .bar:nth-child(1) { width: 22px !important; }
+#hamburger-btn .bar:nth-child(2) { width: 16px !important; }
+#hamburger-btn .bar:nth-child(3) { width: 22px !important; }
+
+#hamburger-btn:hover .bar {
+  background: #c9922f !important;
+  width: 22px !important;
+}
+
+
+/* --- CRISP VISIBLE 3-LINE FLOATING MENU ICON --- */
+#hamburger-btn {
+  position: fixed !important;
+  left: 24px !important;
+  top: 24px !important;
+  width: 42px !important;
+  height: 42px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(23, 50, 77, 0.15) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 18px rgba(23, 50, 77, 0.12) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+  padding: 0 !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#hamburger-btn:hover {
+  background: #17324d !important;
+  border-color: #c9922f !important;
+  transform: scale(1.06) !important;
+  box-shadow: 0 8px 22px rgba(201, 146, 47, 0.35) !important;
+}
+
+#hamburger-btn .bar {
+  width: 20px !important;
+  height: 2.5px !important;
+  background: #17324d !important;
+  border-radius: 99px !important;
+  transition: background 0.25s ease !important;
+}
+
+#hamburger-btn:hover .bar {
+  background: #f5cf68 !important;
+}
+
+
+/* --- RICH SIDEBAR DRAWER STYLES --- */
+#sidebar-drawer {
+  width: 310px !important;
+  background: linear-gradient(180deg, #112538 0%, #17324d 100%) !important;
+  border-right: 1.5px solid rgba(201, 146, 47, 0.4) !important;
+  padding: 24px 22px !important;
+}
+
+.sidebar-group-title {
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  color: #8da4b7 !important;
+  letter-spacing: 1.2px !important;
+  margin: 6px 0 10px 4px !important;
+}
+
+.sidebar-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 12px 14px !important;
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.sidebar-link .link-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.sidebar-link .link-title {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  color: #f1f5f9 !important;
+}
+
+.sidebar-link .link-sub {
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+  line-height: 1.3 !important;
+}
+
+.sidebar-link:hover .link-title,
+.sidebar-link.active .link-title {
+  color: #17324d !important;
+}
+
+.sidebar-link:hover .link-sub,
+.sidebar-link.active .link-sub {
+  color: #2c4a67 !important;
+}
+
+.sidebar-footer-info {
+  margin-top: auto !important;
+  padding-top: 18px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  font-size: 11px !important;
+  color: #c9922f !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  letter-spacing: 0.5px !important;
+}
+
+
+/* --- PROFESSIONAL SIDEBAR DRAWER DESIGN --- */
+#sidebar-drawer {
+  width: 310px !important;
+  background: #0f2133 !important;
+  border-right: 1px solid rgba(201, 146, 47, 0.35) !important;
+  padding: 24px 20px !important;
+  box-shadow: 20px 0 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+.sidebar-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-bottom: 16px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  margin-bottom: 20px !important;
+}
+
+.sidebar-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.brand-icon { font-size: 24px !important; }
+
+.brand-titles {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.brand-main {
+  font-family: SourceSerif, Georgia, serif !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #c9922f !important;
+  letter-spacing: 0.5px !important;
+}
+
+.brand-sub {
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+}
+
+#sidebar-close-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #e2e8f0 !important;
+  font-size: 20px !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.25s ease !important;
+}
+
+#sidebar-close-btn:hover {
+  background: #c9922f !important;
+  color: #0f2133 !important;
+  border-color: #c9922f !important;
+}
+
+.sidebar-section-label {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: #64748b !important;
+  letter-spacing: 1.2px !important;
+  margin-bottom: 12px !important;
+}
+
+.sidebar-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.sidebar-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 11px 14px !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative !important;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+  background: rgba(201, 146, 47, 0.15) !important;
+  border-color: #c9922f !important;
+  transform: translateX(4px) !important;
+}
+
+.sidebar-link.active::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 8px !important;
+  bottom: 8px !important;
+  width: 3px !important;
+  background: #c9922f !important;
+  border-radius: 99px !important;
+}
+
+.sidebar-link .link-num {
+  font-family: SourceSerif, Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  color: #f5cf68 !important;
+  min-width: 22px !important;
+}
+
+.sidebar-link .link-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.sidebar-link .link-title {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #f1f5f9 !important;
+}
+
+.sidebar-link .link-sub {
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+}
+
+.sidebar-link:hover .link-title, .sidebar-link.active .link-title {
+  color: #f5cf68 !important;
+}
+
+.sidebar-footer {
+  margin-top: auto !important;
+  padding-top: 16px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  text-align: center !important;
+}
+
+.footer-badge {
+  font-size: 11px !important;
+  color: #c9922f !important;
+  font-weight: 700 !important;
+}
+
+
+/* --- PERFECT SVG 3-LINE HAMBURGER BUTTON STYLES --- */
+#hamburger-btn {
+  position: fixed !important;
+  left: 20px !important;
+  top: 20px !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 6px 18px rgba(23, 50, 77, 0.16) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+  padding: 0 !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#hamburger-btn svg path {
+  transition: stroke 0.25s ease !important;
+}
+
+#hamburger-btn:hover {
+  background: #17324d !important;
+  border-color: #c9922f !important;
+  transform: scale(1.06) !important;
+  box-shadow: 0 8px 22px rgba(201, 146, 47, 0.35) !important;
+}
+
+#hamburger-btn:hover svg path {
+  stroke: #f5cf68 !important;
+}
+
+
+/* --- SLEEK MINIMAL SIDEBAR DRAWER DESIGN --- */
+#sidebar-drawer {
+  width: 260px !important;
+  background: #132a42 !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 20px 16px !important;
+  box-shadow: 15px 0 35px rgba(0, 0, 0, 0.3) !important;
+}
+
+.sidebar-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-bottom: 14px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  margin-bottom: 16px !important;
+}
+
+.brand-main {
+  font-family: SourceSerif, Georgia, serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #c9922f !important;
+  letter-spacing: 0.8px !important;
+}
+
+#sidebar-close-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #94a3b8 !important;
+  font-size: 22px !important;
+  width: 28px !important;
+  height: 28px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: color 0.2s ease !important;
+}
+
+#sidebar-close-btn:hover {
+  color: #ffffff !important;
+}
+
+.sidebar-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+.sidebar-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 12px !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  border-left: 2px solid transparent !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-left-color: #c9922f !important;
+  transform: translateX(3px) !important;
+}
+
+.sidebar-link .link-num {
+  font-family: SourceSerif, Georgia, serif !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  color: #c9922f !important;
+  min-width: 20px !important;
+}
+
+.sidebar-link .link-title {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #e2e8f0 !important;
+  transition: color 0.2s ease !important;
+}
+
+.sidebar-link:hover .link-title, .sidebar-link.active .link-title {
+  color: #ffffff !important;
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
@@ -1129,6 +1713,49 @@ html, body, .page, .page * {
 </style>
 </head>
 <body>
+
+<!-- FLOATING HAMBURGER MENU BUTTON (3 DẤU GẠCH BÊN TRÁI) -->
+<button id="hamburger-btn" aria-label="Mở Menu Mục Lục" title="Mục lục bài học">
+  <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 1.5H21M1 9H21M1 16.5H21" stroke="#17324D" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+</button>
+
+<div id="sidebar-backdrop"></div>
+<aside id="sidebar-drawer">
+  <div class="sidebar-head">
+    <div class="sidebar-brand">
+      <span class="brand-main">NHÓM 10 — TCTT</span>
+    </div>
+    <button id="sidebar-close-btn" title="Đóng">&times;</button>
+  </div>
+
+  <div class="sidebar-body">
+    <nav class="sidebar-nav">
+      <a href="#sec-01" class="sidebar-link" data-sec="01">
+        <span class="link-num">01</span>
+        <span class="link-title">Sự tiến hoá tiền tệ</span>
+      </a>
+
+      <a href="#sec-02" class="sidebar-link" data-sec="02">
+        <span class="link-num">02</span>
+        <span class="link-title">CBDC là gì?</span>
+      </a>
+
+      <a href="#sec-03" class="sidebar-link" data-sec="03">
+        <span class="link-num">03</span>
+        <span class="link-title">So sánh CBDC</span>
+      </a>
+
+      <a href="#sec-04" class="sidebar-link" data-sec="04">
+        <span class="link-num">04</span>
+        <span class="link-title">Ưu &amp; Nhược điểm</span>
+      </a>
+    </nav>
+  </div>
+</aside>
+
+
 <div class="page">
 <section class="hero">
 <div class="heroL">
@@ -1147,7 +1774,7 @@ html, body, .page, .page * {
 </section>
 
 <section class="section">
-<div class="secHead"><div class="no">01</div><div class="secTitle">Sự tiến hoá của các hình thái tiền tệ</div><div class="secSub">Từ tiền hàng hoá đến tiền kỹ thuật số.</div></div>
+<div class="secHead" id="sec-01"><div class="no">01</div><div class="secTitle">Sự tiến hoá của các hình thái tiền tệ</div><div class="secSub">Từ tiền hàng hoá đến tiền kỹ thuật số.</div></div>
 
 <div class="strip" id="timeline-strip">
 <div data-step="1"><b>Trước TK XIX</b><span>Tiền hàng hoá</span></div>
@@ -1692,6 +2319,79 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         scrollTicking = true;
       }
+    });
+  });
+})();
+</script>
+
+
+<script>
+(function() {
+  document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("hamburger-btn");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    const drawer = document.getElementById("sidebar-drawer");
+    const closeBtn = document.getElementById("sidebar-close-btn");
+    const links = document.querySelectorAll(".sidebar-link");
+
+    function openSidebar() {
+      if (backdrop) backdrop.classList.add("active");
+      if (drawer) drawer.classList.add("active");
+    }
+
+    function closeSidebar() {
+      if (backdrop) backdrop.classList.remove("active");
+      if (drawer) drawer.classList.remove("active");
+    }
+
+    if (btn) btn.addEventListener("click", openSidebar);
+    if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
+    if (backdrop) backdrop.addEventListener("click", closeSidebar);
+
+    links.forEach(link => {
+      link.addEventListener("click", function(e) {
+        closeSidebar();
+        const targetId = this.getAttribute("href");
+        if (targetId && targetId.startsWith("#")) {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const yOffset = -70;
+            const y = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }
+      });
+    });
+
+    // Auto highlight active sidebar link on scroll
+    const sections = [
+      document.getElementById("sec-01"),
+      document.getElementById("sec-02"),
+      document.getElementById("sec-03"),
+      document.getElementById("sec-04")
+    ];
+
+    window.addEventListener("scroll", function() {
+      let activeIndex = -1;
+      const topOffset = window.innerHeight * 0.35;
+
+      sections.forEach((sec, idx) => {
+        if (sec) {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top <= topOffset) {
+            activeIndex = idx;
+          }
+        }
+      });
+
+      links.forEach((link, idx) => {
+        if (idx === activeIndex) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
     });
   });
 })();
