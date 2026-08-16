@@ -432,6 +432,81 @@ html { scroll-behavior: smooth; }
   font-weight: 700 !important;
 }
 
+
+/* --- ULTRASMOOTH HARDWARE-ACCELERATED ANIMATIONS --- */
+*, *::before, *::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Timeline & Card Hardware Acceleration */
+.strip, .strip div, .strip div::before, .strip::after,
+.p01Clean .cleanCard, .card, .photo, .heroSmall, .tag, #back-to-top {
+  will-change: transform, opacity, box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Timeline Animations Upgrade */
+.strip::after {
+  transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.strip div {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease !important;
+}
+
+.strip div::before {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+.strip div:hover::before,
+.strip div.strip-active::before {
+  background: #c9922f !important;
+  color: #17324d !important;
+  border-color: #ffffff !important;
+  transform: scale(1.32) translateY(-2px) !important;
+  box-shadow: 0 0 0 4px #17324d, 0 8px 24px rgba(201, 146, 47, 0.7) !important;
+  animation: timelineGlowPulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes timelineGlowPulse {
+  0% { box-shadow: 0 0 0 4px #17324d, 0 6px 18px rgba(201, 146, 47, 0.6); }
+  100% { box-shadow: 0 0 0 4px #17324d, 0 10px 30px rgba(245, 207, 104, 0.9); }
+}
+
+/* CleanCard Ultrasmooth Highlight */
+.p01Clean .cleanCard {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease !important;
+}
+
+.p01Clean .cleanCard:hover {
+  transform: translateY(-10px) scale(1.02) translateZ(0) !important;
+  box-shadow: 0 18px 38px rgba(23, 50, 77, 0.16) !important;
+}
+
+.p01Clean .cleanCard.card-highlight {
+  transform: translateY(-20px) scale(1.06) translateZ(0) !important;
+  box-shadow: 0 28px 55px rgba(201, 146, 47, 0.42), 0 0 0 3px.c9922f, 0 12px 25px rgba(23, 50, 77, 0.2) !important;
+  border-color: #c9922f !important;
+  z-index: 10 !important;
+}
+
+/* Reveal Entrance Easing Upgrade */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) translateZ(0);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
 </style>
 <style id="v19-fix">
 :root{--navy:#17324d;--gold:#c9922f;--ink:#19324a;--muted:#647487;--line:#d6dfe5;--cream:#f3eee3;--blue2:#e9f0f3}
