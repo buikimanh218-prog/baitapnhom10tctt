@@ -6,6 +6,11 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>NHÓM 10 — Nghiên cứu Tài chính Tiền tệ</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class'
+  }
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <style>
@@ -2031,9 +2036,11 @@ function switchTab(tabIndex) {
 }
 
 function toggleTheme() {
+    document.documentElement.classList.toggle("dark");
     document.body.classList.toggle("dark");
-    const isDark = document.body.classList.contains("dark");
+    const isDark = document.documentElement.classList.contains("dark");
     document.getElementById("themeIcon").className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    localStorage.setItem("finance-theme", isDark ? "dark" : "light");
     defPlaySound(isDark ? 329.63 : 659.25, "triangle", 0.1);
 }
 
@@ -3033,9 +3040,26 @@ function closeCaseStudyModal() {
 }
 
 window.onload = () => {
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('finance-theme');
+    
+    let isDark = false;
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        isDark = true;
+    }
+    
+    if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('dark');
+        document.getElementById("themeIcon").className = "fa-solid fa-sun";
+    } else {
+        document.documentElement.classList.remove('dark');
+        document.body.classList.remove('dark');
+        document.getElementById("themeIcon").className = "fa-solid fa-moon";
+    }
+
     switchTab(1);
     onScenario3SliderChange(); // Khởi chạy thanh trượt Slide 3 an toàn 100%!
-
 };
 
 </script>
