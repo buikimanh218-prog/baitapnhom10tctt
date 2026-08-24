@@ -1209,7 +1209,7 @@ Khám phá cách tiền đi từ người tiết kiệm đến doanh nghiệp, t
 </a>
 <a class="flex items-center gap-2.5 px-3 py-2 text-xs font-extrabold text-slate-700 dark:text-slate-200 hover:bg-teal-500/10 hover:text-teal-500 rounded-xl transition" href="javascript:void(0)" onclick="scrollToSection('case-studies-section', 2)">
 <span class="h-5 w-5 rounded-lg bg-teal-100 dark:bg-teal-950 text-teal-600 flex items-center justify-center text-[10px] font-black">8</span>
-<span>Bộ ba Case Study thực địa</span>
+<span>Ví dụ thực tế</span>
 </a>
 </div>
 </div>
@@ -1485,7 +1485,7 @@ Khám phá cách tiền đi từ người tiết kiệm đến doanh nghiệp, t
 </div>
 <div class="space-y-1.5 py-2" id="event-info-box">
 <h4 class="text-base font-black text-slate-800 dark:text-white uppercase leading-tight" id="event-title">Nhấn nút quay xúc xắc để bắt đầu học tập!</h4>
-<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-semibold" id="event-desc">Hệ thống giả lập sẽ đồng bộ xoay tròn và lựa chọn ngẫu nhiên một chuyên đề học tập thực tế liên quan trực tiếp đến Câu 2. Khi chuyên đề hiển thị, sơ đồ tư duy vĩ mô Việt Nam tương ứng phía trên sẽ tự động phát sáng và tăng tốc độ luân chuyển hạt dòng tiền giúp bạn dễ dàng trực quan và thấu hiểu lý thuyết sâu sắc nhất!</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-semibold" id="event-desc">Hệ thống sẽ quay xúc xắc và hiển thị chuyên đề nghiên cứu thực tế liên quan trực tiếp đến Câu 2. Nhấp chọn nút quay bên dưới để bắt đầu tìm hiểu và khám phá các nội dung phân tích chuyên sâu!</p>
 </div>
 </div>
 </div>
@@ -1654,7 +1654,7 @@ Khám phá cách tiền đi từ người tiết kiệm đến doanh nghiệp, t
 <span class="px-2 py-0.5 bg-amber-500/10 text-amber-500 text-[9px] font-black uppercase rounded hidden sm:inline-block">Báo động vĩ mô</span>
 </div>
 <p class="text-sm text-slate-400 dark:text-slate-500 leading-relaxed font-semibold">
-            Tỷ lệ tổng dư nợ tín dụng trên GDP của Việt Nam nằm trong nhóm cao nhất thế giới, liên tục <b>vượt mức 120% – 130% GDP</b>. Đây là chỉ số minh họa mức độ <b>rủi ro tập trung chênh lệch kỳ hạn</b> cực kỳ lớn lên vai các ngân hàng thương mại.
+            Tỷ lệ tổng dư nợ tín dụng trên GDP của Việt Nam duy trì ở mức cực nóng <b>120% – 130% GDP</b>. Theo báo cáo mới nhất của NHNN cuối tháng 6/2026, tổng dư nợ tín dụng của nền kinh tế chính thức <b>vượt mốc 20,15 triệu tỷ đồng</b> (tăng trưởng <b>8,37%</b> so với cuối năm 2025).
           </p>
 </div>
 </div>
@@ -1669,8 +1669,11 @@ Khám phá cách tiền đi từ người tiết kiệm đến doanh nghiệp, t
 <span class="px-2 py-0.5 bg-purple-500/10 text-purple-500 text-[9px] font-black uppercase rounded hidden sm:inline-block">Quy mô khổng lồ</span>
 </div>
 <p class="text-sm text-slate-400 dark:text-slate-500 leading-relaxed font-semibold">
-            Tổng tài sản của hệ thống các tổ chức tín dụng <b>áp đảo hoàn toàn</b> quy mô của định chế phi ngân hàng (bảo hiểm, quỹ). Trên sàn chứng khoán, nhóm <b>cổ phiếu ngân hàng</b> chiếm thanh khoản và tỷ trọng vốn hóa chi phối toàn thị trường.
+            Tổng tài sản của hệ thống các tổ chức tín dụng <b>áp đảo hoàn toàn</b> quy mô định chế phi ngân hàng. Tính đến ngày 31/05/2026, tổng tài sản của hệ thống các TCTD đạt trên <b>29,28 triệu tỷ đồng</b> (tăng trưởng <b>4,33%</b> so với cuối năm 2025).
           </p>
+<button class="mt-2.5 px-3 py-1.5 text-[10px] font-black uppercase text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:scale-[1.02] transition rounded-xl shadow-md flex items-center gap-1.5" onclick="openTctdAssetsModal()">
+  <i class="fa-solid fa-chart-pie"></i> Xem chi tiết cơ cấu tài sản (NHNN 2026) ➔
+</button>
 </div>
 </div>
 </div>
@@ -3025,6 +3028,34 @@ function selectCaseStudy(index, playSound = true) {
   }, 50);
 }
 
+function openTctdAssetsModal() {
+  const modal = document.getElementById("tctd-assets-modal");
+  const content = document.getElementById("tctd-assets-modal-content");
+  if (!modal || !content) return;
+  
+  defPlaySound(523.25, "sine", 0.08); // play a nice gentle beep
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+  setTimeout(() => {
+    content.classList.remove("scale-95", "opacity-0");
+    content.classList.add("scale-100", "opacity-100");
+  }, 50);
+}
+
+function closeTctdAssetsModal() {
+  const modal = document.getElementById("tctd-assets-modal");
+  const content = document.getElementById("tctd-assets-modal-content");
+  if (!modal || !content) return;
+  
+  defPlaySound(392, "triangle", 0.12);
+  content.classList.remove("scale-100", "opacity-100");
+  content.classList.add("scale-95", "opacity-0");
+  setTimeout(() => {
+    modal.classList.remove("flex");
+    modal.classList.add("hidden");
+  }, 300);
+}
+
 function closeCaseStudyModal() {
   const modal = document.getElementById("case-study-modal");
   const content = document.getElementById("case-study-modal-content");
@@ -3064,6 +3095,94 @@ window.onload = () => {
 
 </script>
 <!-- REAL-TIME INTERACTIVE POPUP MODAL FOR CASE STUDIES -->
+<!-- INTERACTIVE POPUP MODAL FOR TCTD ASSETS (NHNN REPORT 2026) -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-md transition-all duration-300" id="tctd-assets-modal">
+<div class="absolute inset-0 cursor-pointer" onclick="closeTctdAssetsModal()"></div>
+<div class="relative bg-slate-900 border border-slate-700 text-slate-100 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl p-6 md:p-8 flex flex-col gap-5 scale-95 opacity-0 transition-all duration-300" id="tctd-assets-modal-content">
+  <!-- Close Button -->
+  <button class="absolute top-4 right-4 h-9 w-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 border border-slate-700 hover:text-white transition-all duration-200 z-10 flex items-center justify-center" onclick="closeTctdAssetsModal()">
+    <i class="fa-solid fa-xmark text-base"></i>
+  </button>
+  <!-- Header -->
+  <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+    <div class="h-11 w-11 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center text-xl">
+      <i class="fa-solid fa-vault"></i>
+    </div>
+    <div>
+      <span class="px-2.5 py-0.5 bg-purple-500/10 text-purple-400 text-[9px] font-black uppercase rounded-lg border border-purple-500/20">Thống kê NHNN 2026</span>
+      <h4 class="text-base font-black text-white uppercase mt-1">Cơ cấu quy mô tài sản toàn hệ thống các TCTD Việt Nam</h4>
+    </div>
+  </div>
+  <!-- Summary Text -->
+  <p class="text-xs text-slate-300 font-bold leading-relaxed">
+    Theo số liệu chính thức công bố từ Ngân hàng Nhà nước tính đến ngày <span class="text-yellow-400">31/05/2026</span>, tổng tài sản của toàn hệ thống tổ chức tín dụng (TCTD) tại Việt Nam đạt con số khổng lồ <span class="text-purple-400 font-extrabold">29,28 triệu tỷ đồng</span>, duy trì mức tăng trưởng ấn tượng <span class="text-emerald-400">4,33%</span> so với cuối năm 2025, tiếp tục củng cố vai trò huyết mạch chủ đạo của mô hình tài chính dựa vào ngân hàng (Bank-based).
+  </p>
+  <!-- Beautiful styled responsive table -->
+  <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/40">
+    <table class="w-full text-[11px] text-left border-collapse">
+      <thead>
+        <tr class="bg-slate-950/80 border-b border-slate-800 text-slate-400 uppercase text-[9px] font-black">
+          <th class="p-3">Nhóm Tổ chức Tín dụng</th>
+          <th class="p-3 text-right">Quy mô tài sản (Tỷ VND)</th>
+          <th class="p-3 text-right">Tăng trưởng</th>
+          <th class="p-3 text-center">Đặc trưng vĩ mô</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800/60 font-semibold text-slate-300">
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 text-white font-black flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-blue-500"></span> NHTM Cổ phần</td>
+          <td class="p-3 text-right font-black text-slate-100">13.540.000</td>
+          <td class="p-3 text-right text-emerald-400 font-extrabold">+4,62%</td>
+          <td class="p-3 text-[10.5px] text-slate-400 text-center font-bold">Nhóm có quy mô tài sản lớn nhất hệ thống</td>
+        </tr>
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 text-white font-black flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-red-500"></span> NHTM Nhà nước</td>
+          <td class="p-3 text-right font-black text-slate-100">11.558.000</td>
+          <td class="p-3 text-right text-emerald-400 font-extrabold">+2,88%</td>
+          <td class="p-3 text-[10.5px] text-slate-400 text-center font-bold">Kênh cấp vốn và an sinh quốc gia then chốt</td>
+        </tr>
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 text-white font-black flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-emerald-500"></span> NH Liên doanh, Nước ngoài</td>
+          <td class="p-3 text-right font-black text-slate-100">2.548.000</td>
+          <td class="p-3 text-right text-yellow-300 font-black">+7,42%</td>
+          <td class="p-3 text-[10.5px] text-yellow-300/90 text-center font-bold">Nhóm có tốc độ tăng trưởng cao nhất</td>
+        </tr>
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 text-white font-black flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-indigo-500"></span> Ngân hàng TNHH MTV</td>
+          <td class="p-3 text-right font-black text-slate-100">473.955</td>
+          <td class="p-3 text-right text-slate-500 font-bold">--</td>
+          <td class="p-3 text-[10.5px] text-slate-400 text-center font-bold">Mô hình ngân hàng 100% sở hữu đặc biệt</td>
+        </tr>
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 text-white font-black flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-purple-500"></span> Ngân hàng Chính sách xã hội</td>
+          <td class="p-3 text-right font-black text-slate-100">469.117</td>
+          <td class="p-3 text-right text-emerald-400 font-extrabold">+10,51%</td>
+          <td class="p-3 text-[10.5px] text-slate-400 text-center font-bold">Cơ cấu chính sách, giảm nghèo và phát triển</td>
+        </tr>
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 text-white font-black flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-pink-500"></span> CT Tài chính & Cho thuê TC</td>
+          <td class="p-3 text-right font-black text-slate-100">432.578</td>
+          <td class="p-3 text-right text-emerald-400 font-extrabold">+2,58%</td>
+          <td class="p-3 text-[10.5px] text-slate-400 text-center font-bold">Huy động vốn tiêu dùng, cho thuê tài sản</td>
+        </tr>
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 text-white font-black flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-red-400"></span> Quỹ Tín dụng nhân dân</td>
+          <td class="p-3 text-right font-black text-slate-100">200.189</td>
+          <td class="p-3 text-right text-red-400 font-black">-1,38%</td>
+          <td class="p-3 text-[10.5px] text-red-400/90 text-center font-bold">Phân khúc duy nhất bị sụt giảm quy mô tài sản</td>
+        </tr>
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 text-white font-black flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-teal-500"></span> Ngân hàng Hợp tác xã</td>
+          <td class="p-3 text-right font-black text-slate-100">61.475</td>
+          <td class="p-3 text-right text-slate-500 font-bold">--</td>
+          <td class="p-3 text-[10.5px] text-slate-400 text-center font-bold">Hệ thống liên kết quỹ tín dụng cơ sở</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
 <div class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/30 backdrop-blur-md transition-all duration-300" id="case-study-modal">
 <div class="absolute inset-0 cursor-pointer" id="case-study-modal-overlay" onclick="closeCaseStudyModal()"></div>
 <div class="relative bg-[#090d16] text-slate-100 w-full max-w-4xl max-h-[92vh] md:max-h-[90vh] overflow-y-auto rounded-3xl border-2 shadow-2xl p-6 md:p-8 flex flex-col gap-6 scale-95 opacity-0 transition-all duration-300" id="case-study-modal-content">
