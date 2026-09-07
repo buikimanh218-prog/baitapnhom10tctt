@@ -1187,6 +1187,20 @@
     margin-top: 0.75rem !important;
     margin-bottom: 0.75rem !important;
 }
+
+/* Fix: move mindmap content down so the top is not hidden */
+.mindmap-wrapper {
+    padding-top: 70px !important;
+    margin-top: 40px !important;
+}
+.mindmap-wrapper .node-branch.nb-3,
+#home-mindmap .node-branch.nb-1,
+#home-mindmap .node-branch.nb-4 {
+    margin-top: 35px !important;
+}
+/* Remove the old advice image that made the home page look messy */
+.council-advice-old-image {display:none !important;}
+
 </style>
 
 <style>
@@ -1638,10 +1652,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 }
 </style>
 <style id="extra-navigation-tools">
-#toc-panel{display:none;position:fixed;top:72px;left:20px;z-index:80;background:rgba(255,255,255,.35);backdrop-filter:blur(8px);border:2px solid rgba(255,209,220,.7);border-radius:18px;padding:14px;box-shadow:0 15px 35px rgba(0,0,0,.12);}
-#toc-panel.show{display:block;}
-#toc-panel button{display:block;width:220px;text-align:left;padding:8px 12px;border-radius:10px;font-weight:700;}
-#toc-panel button:hover{background:#ffe4ec;}
+
 #page-horizontal-scroll{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);width:70%;z-index:90;background:white;border:1px solid #ffd1dc;border-radius:20px;padding:6px;box-shadow:0 5px 20px rgba(0,0,0,.12);}
 #page-horizontal-scroll input{width:100%;}
 </style>
@@ -1653,7 +1664,52 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
     font-weight: 900 !important;
 }
 </style>
-</head>
+
+<style>
+/* Can chinh lai so do tu duy: khoang cach deu, nhanh giua nam dung trung tam */
+.mindmap-wrapper {
+    padding-top: 50px !important;
+    margin-top: 30px !important;
+}
+.mindmap-wrapper .node-branch.nb-3,
+#home-mindmap .node-branch.nb-1,
+#home-mindmap .node-branch.nb-4 {
+    margin-top: 0 !important;
+}
+#home-mindmap.active .node-branch.nb-1 {left:18% !important; top:18% !important;}
+#home-mindmap.active .node-branch.nb-2 {left:18% !important; top:50% !important;}
+#home-mindmap.active .node-branch.nb-3 {left:18% !important; top:82% !important;}
+#home-mindmap.active .node-branch.nb-4 {left:82% !important; top:18% !important;}
+#home-mindmap.active .node-branch.nb-5 {left:82% !important; top:50% !important;}
+#home-mindmap.active .node-branch.nb-6 {left:82% !important; top:82% !important;}
+</style>
+
+<style id="space-night-background">
+/* Bầu trời sao + mặt trăng lấp lánh */
+.space-moon {
+ position:fixed; right:70px; top:70px; width:150px; height:150px; border-radius:50%;
+ background:radial-gradient(circle at 35% 30%, #fff 0%, #fff9d6 25%, #f4d77b 65%, #d9a441 100%);
+ box-shadow:0 0 25px #fff8b5, 0 0 70px rgba(255,245,180,.8);
+ z-index:2; pointer-events:none; opacity:.9;
+}
+.space-moon:before,.space-moon:after{content:"";position:absolute;border-radius:50%;background:rgba(190,150,80,.18);}
+.space-moon:before{width:25px;height:25px;left:35px;top:55px;}
+.space-moon:after{width:18px;height:18px;left:90px;top:35px;}
+.space-star{position:fixed;width:5px;height:5px;background:#fff;border-radius:50%;z-index:2;pointer-events:none;box-shadow:0 0 12px #fff,0 0 25px #bde7ff;animation:twinkleStar 2.8s infinite alternate;}
+@keyframes twinkleStar{from{opacity:.3;transform:scale(.7)}to{opacity:1;transform:scale(1.5)}}
+</style>
+
+<style id="enhanced-cosmic-bg">
+.cosmic-moon{position:fixed;right:70px;top:55px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0%,#fff7cf 35%,#f5d98b 70%,#d6b45c 100%);box-shadow:0 0 35px 15px rgba(255,240,170,.45),0 0 100px 35px rgba(255,255,255,.18);z-index:1;pointer-events:none;}
+.cosmic-moon:after{content:'';position:absolute;inset:25px;border-radius:50%;background:radial-gradient(circle,#d7c38a 2px,transparent 3px);opacity:.35;}
+.cosmic-stars{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.cosmic-stars span{position:absolute;width:4px;height:4px;background:#fff;border-radius:50%;box-shadow:0 0 12px #fff;animation:twinkleStar 2s infinite alternate;}
+@keyframes twinkleStar{from{opacity:.25;transform:scale(.7)}to{opacity:1;transform:scale(1.6)}}
+.meteor{position:fixed;top:-80px;width:3px;height:180px;background:linear-gradient(to bottom,rgba(255,255,255,0),#fff,rgba(255,143,163,0));transform:rotate(-45deg);animation:meteorFall linear infinite;z-index:2;pointer-events:none;}
+@keyframes meteorFall{0%{transform:translate(0,0) rotate(-45deg);opacity:0}10%{opacity:1}100%{transform:translate(700px,700px) rotate(-45deg);opacity:0}}
+</style>
+<div class="cosmic-moon"></div><div class="cosmic-stars"><span style="left:0%;top:0%;animation-delay:0.0s"></span><span style="left:13%;top:17%;animation-delay:0.2s"></span><span style="left:26%;top:34%;animation-delay:0.4s"></span><span style="left:39%;top:51%;animation-delay:0.6000000000000001s"></span><span style="left:52%;top:68%;animation-delay:0.8s"></span><span style="left:65%;top:10%;animation-delay:1.0s"></span><span style="left:78%;top:27%;animation-delay:1.2000000000000002s"></span><span style="left:91%;top:44%;animation-delay:1.4000000000000001s"></span><span style="left:9%;top:61%;animation-delay:1.6s"></span><span style="left:22%;top:3%;animation-delay:1.8s"></span><span style="left:35%;top:20%;animation-delay:2.0s"></span><span style="left:48%;top:37%;animation-delay:2.2s"></span><span style="left:61%;top:54%;animation-delay:2.4000000000000004s"></span><span style="left:74%;top:71%;animation-delay:2.6s"></span><span style="left:87%;top:13%;animation-delay:2.8000000000000003s"></span><span style="left:5%;top:30%;animation-delay:3.0s"></span><span style="left:18%;top:47%;animation-delay:3.2s"></span><span style="left:31%;top:64%;animation-delay:3.4000000000000004s"></span><span style="left:44%;top:6%;animation-delay:3.6s"></span><span style="left:57%;top:23%;animation-delay:3.8000000000000003s"></span><span style="left:70%;top:40%;animation-delay:4.0s"></span><span style="left:83%;top:57%;animation-delay:4.2s"></span><span style="left:1%;top:74%;animation-delay:4.4s"></span><span style="left:14%;top:16%;animation-delay:4.6000000000000005s"></span><span style="left:27%;top:33%;animation-delay:4.800000000000001s"></span><span style="left:40%;top:50%;animation-delay:5.0s"></span><span style="left:53%;top:67%;animation-delay:5.2s"></span><span style="left:66%;top:9%;animation-delay:5.4s"></span></div>
+<div class="meteor" style="left:10%;animation-duration:3s;animation-delay:0.0s"></div><div class="meteor" style="left:21%;animation-duration:4s;animation-delay:0.45s"></div><div class="meteor" style="left:32%;animation-duration:5s;animation-delay:0.9s"></div><div class="meteor" style="left:43%;animation-duration:3s;animation-delay:1.35s"></div><div class="meteor" style="left:54%;animation-duration:4s;animation-delay:1.8s"></div><div class="meteor" style="left:65%;animation-duration:5s;animation-delay:2.25s"></div><div class="meteor" style="left:76%;animation-duration:3s;animation-delay:2.7s"></div><div class="meteor" style="left:87%;animation-duration:4s;animation-delay:3.15s"></div><div class="meteor" style="left:98%;animation-duration:5s;animation-delay:3.6s"></div><div class="meteor" style="left:109%;animation-duration:3s;animation-delay:4.05s"></div></head>
 <body class="text-slate-900 selection:bg-su-pink selection:text-white relative overflow-x-hidden">
 <!-- Extra visible clouds -->
 <div class="su-visible-cloud" style="top:14%;left:2%;opacity:.50;animation-delay:-4s"></div>
@@ -1740,7 +1796,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-pink-100 shadow-md transition-all duration-300">
 <div class="w-full max-w-none px-4 sm:px-12 lg:px-20">
 <div class="flex justify-between h-16 items-center">
-<div class="flex items-center space-x-3 cursor-pointer" onclick="showPage('page-home');toggleTOC()">
+<div class="flex items-center space-x-3 cursor-pointer" onclick="showPage('page-home')">
 <div class="w-10 h-10 bg-gradient-to-tr from-su-pink to-su-purple rounded-full flex items-center justify-center text-white shadow-md animate-bounce">
 <i class="fa-solid fa-star text-lg"></i>
 </div>
@@ -1748,14 +1804,14 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 </div>
 <!-- Navigation Tabs on the sticky top bar -->
 <div class="hidden lg:flex space-x-1 text-xs font-bold p-1 bg-pink-50/50 rounded-full border border-pink-100">
-<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-home" onclick="showPage('page-home');toggleTOC()">Trang Chủ</button>
-<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method1" onclick="showPage('page-method1');toggleTOC()">1. Vốn Góp</button>
-<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method2" onclick="showPage('page-method2');toggleTOC()">2. Lợi Nhuận</button>
-<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method3" onclick="showPage('page-method3');toggleTOC()">3. Ngân Hàng</button>
-<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method4" onclick="showPage('page-method4');toggleTOC()">4. Thương Mại</button>
-<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method5" onclick="showPage('page-method5');toggleTOC()">5. Cổ Phiếu</button>
-<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method6" onclick="showPage('page-method6');toggleTOC()">6. Trái Phiếu</button>
-<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-mindmap" onclick="showPage('page-mindmap');toggleTOC()">📚 Ôn Tập</button>
+<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-home" onclick="showPage('page-home')">Trang Chủ</button>
+<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method1" onclick="showPage('page-method1')">1. Vốn Góp</button>
+<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method2" onclick="showPage('page-method2')">2. Lợi Nhuận</button>
+<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method3" onclick="showPage('page-method3')">3. Ngân Hàng</button>
+<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method4" onclick="showPage('page-method4')">4. Thương Mại</button>
+<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method5" onclick="showPage('page-method5')">5. Cổ Phiếu</button>
+<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-method6" onclick="showPage('page-method6')">6. Trái Phiếu</button>
+<button class="tab-btn px-3 py-2 rounded-full text-slate-800 hover:text-su-rose transition-all font-bold" id="tab-mindmap" onclick="showPage('page-mindmap')">📚 Ôn Tập</button>
 </div>
 <div class="flex items-center gap-2">
 <div class="flex items-center gap-1.5">
@@ -1778,19 +1834,8 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 </nav>
 
 <!-- Extra navigation controls -->
-<div id="toc-panel">
-<button onclick="toggleTOC()" style="margin-bottom:8px;text-align:center;background:rgba(255,255,255,.55)">✖ Đóng mục lục</button>
-<button onclick="showPage('page-home');toggleTOC()">🏠 Trang Chủ</button>
-<button onclick="showPage('page-method1');toggleTOC()">1. Vốn Góp</button>
-<button onclick="showPage('page-method2');toggleTOC()">2. Lợi Nhuận</button>
-<button onclick="showPage('page-method3');toggleTOC()">3. Ngân Hàng</button>
-<button onclick="showPage('page-method4');toggleTOC()">4. Thương Mại</button>
-<button onclick="showPage('page-method5');toggleTOC()">5. Cổ Phiếu</button>
-<button onclick="showPage('page-method6');toggleTOC()">6. Trái Phiếu</button>
-<button onclick="showPage('page-mindmap');toggleTOC()">📚 Ôn Tập</button>
-</div>
+
 <div class="fixed bottom-6 left-5 z-[70] flex gap-2">
-<button onclick="toggleTOC()" class="bg-white/80 border-2 border-pink-200 rounded-full px-4 py-2 shadow font-bold">☰ Mục lục</button>
 <button onclick="prevPage()" class="bg-white/80 border-2 border-pink-200 rounded-full px-4 py-2 shadow font-bold">⬅ Trang trước</button>
 <button onclick="nextPage()" class="bg-white/80 border-2 border-pink-200 rounded-full px-4 py-2 shadow font-bold">➜ Trang tiếp</button>
 </div>
@@ -1810,7 +1855,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
                     Chào mừng bạn! Khám phá toàn diện lý thuyết &amp; thực tiễn của <strong class="text-su-rose">6 Phương Thức Huy Động Vốn Cốt Lõi</strong> của doanh nghiệp Việt Nam. Chữ nghĩa tóm lược khoa học, phông to sắc nét, hình ảnh chân thực sinh động!
                 </p>
 <div class="flex flex-wrap gap-4 justify-center">
-<button class="bg-su-pink hover:bg-su-rose text-white px-8 py-3.5 rounded-2xl font-black shadow-lg shadow-pink-200 transition-all transform hover:scale-105 flex items-center gap-2 text-sm" onclick="showPage('page-method1');toggleTOC()">
+<button class="bg-su-pink hover:bg-su-rose text-white px-8 py-3.5 rounded-2xl font-black shadow-lg shadow-pink-200 transition-all transform hover:scale-105 flex items-center gap-2 text-sm" onclick="showPage('page-method1')">
                         Bắt Đầu Hành Trình <i class="fa-solid fa-rocket"></i>
 </button>
 </div>
@@ -1882,7 +1927,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 </g>
 </svg>
 <!-- Node 1: Nguồn vốn hình thành doanh nghiệp (Pearl White) -->
-<div class="node-branch absolute bg-white border-2 border-su-pink hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-1" onclick="showPage('page-method1');toggleTOC()">
+<div class="node-branch absolute bg-white border-2 border-su-pink hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-1" onclick="showPage('page-method1')">
 <img alt="Hình ảnh Quy trình home-mindmap Bước 1" class="w-full h-24 object-cover rounded-xl mb-2" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=600&amp;q=80';" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=260&amp;q=80" style="display: block;"/>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-pink-50 to-pink-100/50 border-su-pink border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem"><i class="fa-solid fa-gem text-su-rose text-lg mb-1 animate-pulse"></i><span class="text-[9px] font-black text-su-rose uppercase"> 🐚</span></div>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-pink-50 to-pink-100/50 border-su-pink border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem">
@@ -1897,7 +1942,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 <p class="text-[10px] text-slate-900 font-bold leading-tight mt-1">Góp vốn điều lệ thành lập doanh nghiệp từ cổ đông</p>
 </div>
 <!-- Node 2: Lợi Nhuận Giữ Lại (Amethyst Purple) -->
-<div class="node-branch absolute bg-white border-2 border-su-purple hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-2" onclick="showPage('page-method2');toggleTOC()">
+<div class="node-branch absolute bg-white border-2 border-su-purple hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-2" onclick="showPage('page-method2')">
 <img alt="Hình ảnh Quy trình home-mindmap Bước 2" class="w-full h-24 object-cover rounded-xl mb-2" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&amp;fit=crop&amp;w=600&amp;q=80';" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&amp;fit=crop&amp;w=260&amp;q=80" style="display: block;"/>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-purple-100/50 border-su-purple border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem"><i class="fa-solid fa-gem text-su-purple text-lg mb-1 animate-pulse"></i><span class="text-[9px] font-black text-su-purple uppercase"> 🔮</span></div>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-purple-100/50 border-su-purple border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem">
@@ -1912,7 +1957,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 <p class="text-[10px] text-slate-900 font-bold leading-tight mt-1">Trích thặng dư tích lũy sau thuế để tái đầu tư</p>
 </div>
 <!-- Node 3: Tín dụng Ngân Hàng (Garnet Ruby Red) -->
-<div class="node-branch absolute bg-white border-2 border-su-blue hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-3" onclick="showPage('page-method3');toggleTOC()">
+<div class="node-branch absolute bg-white border-2 border-su-blue hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-3" onclick="showPage('page-method3')">
 <img alt="Hình ảnh Quy trình home-mindmap Bước 3" class="w-full h-24 object-cover rounded-xl mb-2" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&amp;fit=crop&amp;w=600&amp;q=80';" src="https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&amp;fit=crop&amp;w=260&amp;q=80" style="display: block;"/>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-red-50 to-red-100/50 border-red-300 border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem"><i class="fa-solid fa-gem text-red-500 text-lg mb-1 animate-pulse"></i><span class="text-[9px] font-black text-red-600 uppercase">Ngọc Lựu Đỏ 💎</span></div>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-red-50 to-red-100/50 border-red-300 border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem">
@@ -1927,7 +1972,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 <p class="text-[10px] text-slate-900 font-bold leading-tight mt-1">Vay thương mại cam kết hoàn trả cả gốc và lãi nợ</p>
 </div>
 <!-- Node 4: Tín dụng Thương Mại (Lapis Lazuli) -->
-<div class="node-branch absolute bg-white border-2 border-su-yellow hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-4" onclick="showPage('page-method4');toggleTOC()">
+<div class="node-branch absolute bg-white border-2 border-su-yellow hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-4" onclick="showPage('page-method4')">
 <img alt="Hình ảnh Quy trình home-mindmap Bước 4" class="w-full h-24 object-cover rounded-xl mb-2" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=600&amp;q=80';" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&amp;fit=crop&amp;w=260&amp;q=80" style="display: block;"/>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-300 border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem"><i class="fa-solid fa-gem text-blue-500 text-lg mb-1 animate-pulse"></i><span class="text-[9px] font-black text-blue-600 uppercase">Lapis Lazuli 🌊</span></div>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-300 border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem">
@@ -1942,7 +1987,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 <p class="text-[10px] text-slate-900 font-bold leading-tight mt-1">Mua sắm vật liệu trả chậm với nhà cung cấp</p>
 </div>
 <!-- Node 5: Cổ Phiếu (Peridot Cyber Green) -->
-<div class="node-branch absolute bg-white border-2 border-su-cyan hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-5" onclick="showPage('page-method5');toggleTOC()">
+<div class="node-branch absolute bg-white border-2 border-su-cyan hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-5" onclick="showPage('page-method5')">
 <img alt="Hình ảnh Quy trình home-mindmap Bước 5" class="w-full h-24 object-cover rounded-xl mb-2" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&amp;fit=crop&amp;w=600&amp;q=80';" src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&amp;fit=crop&amp;w=260&amp;q=80" style="display: block;"/>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-green-50 to-green-100/50 border-green-300 border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem"><i class="fa-solid fa-gem text-emerald-500 text-lg mb-1 animate-pulse"></i><span class="text-[9px] font-black text-emerald-600 uppercase">Peridot 👽</span></div>
 <div class="flex items-center gap-2 mb-1">
@@ -1953,7 +1998,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 <p class="text-[10px] text-slate-900 font-bold leading-tight mt-1">Chào bán chứng khoán tăng vốn chủ sở hữu pháp lý</p>
 </div>
 <!-- Node 6: Trái Phiếu (Bismuth Metallic Rainbow) -->
-<div class="node-branch absolute bg-white border-2 border-pink-400 hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-6" onclick="showPage('page-method6');toggleTOC()">
+<div class="node-branch absolute bg-white border-2 border-pink-400 hover:border-su-rose hover:shadow-xl shadow-md p-3.5 rounded-2xl w-[220px] text-left group cursor-pointer transition-all duration-300 nb-6" onclick="showPage('page-method6')">
 <img alt="Hình ảnh Quy trình home-mindmap Bước 6" class="w-full h-24 object-cover rounded-xl mb-2" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&amp;fit=crop&amp;w=600&amp;q=80';" src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?auto=format&amp;fit=crop&amp;w=260&amp;q=80" style="display: block;"/>
 <div class="hidden flex flex-col items-center justify-center bg-gradient-to-br from-pink-50 to-pink-100/50 border-pink-300 border-2 border-dashed w-full h-24 rounded-lg text-center p-2 mb-2 fallback-gem"><i class="fa-solid fa-gem text-pink-500 text-lg mb-1 animate-pulse"></i><span class="text-[9px] font-black text-pink-600 uppercase">Bismuth Cầu Vồng ⛓️</span></div>
 <div class="flex items-center gap-2 mb-1">
@@ -2201,7 +2246,7 @@ body{background:linear-gradient(180deg,#fbf8ff 0%,#f2efff 38%,#fff5fb 100%)!impo
 <div class="bg-white/95 rounded-3xl border border-pink-100 p-8 shadow-xl space-y-6">
 <div class="flex items-center gap-3">
 <!-- Real local asset https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=260&q=80 used directly! -->
-<img alt="" class="w-full h-24 object-cover rounded-xl mb-2" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&amp;fit=crop&amp;w=260&amp;q=80" style="display: block;"/>
+<img alt="" class="w-full h-24 object-cover rounded-xl mb-2" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&amp;fit=crop&amp;w=260&amp;q=80" style="display: none;" class="council-advice-old-image"/>
 <div class="hidden w-12 h-16 rounded-xl bg-gradient-to-br from-pink-100 to-pink-200 border-2 border-su-pink shadow-md hover:scale-105 transition-all flex flex-col items-center justify-center">
 <i class="fa-solid fa-star text-su-yellow text-lg animate-bounce"></i>
 <span class="text-[8px] font-black text-su-rose uppercase mt-1"></span>
@@ -6100,7 +6145,6 @@ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded'
 </script>
 
 <script id="extra-navigation-js">
-function toggleTOC(){document.getElementById('toc-panel').classList.toggle('show');}
 function getPages(){return ['page-home','page-method1','page-method2','page-method3','page-method4','page-method5','page-method6'];}
 function getCurrentPageIndex(){
  const pages=getPages();
