@@ -3870,8 +3870,76 @@ body.room-entering .room-overlay.active *{
 body.room-entering .room-overlay.active{opacity:1!important;transform:none!important}
 </style>
 
+
+<style id="moon-blink-actually-visible">
+/* ===== MOON + BLINK BLINK THẬT SỰ NHÌN THẤY ===== */
+#starrySky{
+  z-index:9!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+}
+#moonBackdrop{display:none!important;}
+#starrySky .moon{
+  display:block!important;
+  position:absolute!important;
+  right:8vw!important;
+  top:7vh!important;
+  width:170px!important;
+  height:170px!important;
+  border-radius:50%!important;
+  z-index:4!important;
+  opacity:1!important;
+  visibility:visible!important;
+  background:
+    radial-gradient(circle at 34% 29%,#ffffff 0 8%,transparent 23%),
+    radial-gradient(circle at 67% 27%,rgba(105,98,82,.30) 0 5%,transparent 6%),
+    radial-gradient(circle at 73% 43%,rgba(105,98,82,.24) 0 8%,transparent 9%),
+    radial-gradient(circle at 31% 46%,rgba(105,98,82,.25) 0 6%,transparent 7%),
+    radial-gradient(circle at 51% 63%,rgba(105,98,82,.22) 0 9%,transparent 10%),
+    radial-gradient(circle at 28% 72%,rgba(105,98,82,.18) 0 7%,transparent 8%),
+    linear-gradient(145deg,#fffef2 0%,#f7edcf 48%,#c8c0a7 100%)!important;
+  box-shadow:
+    0 0 22px 6px rgba(255,255,235,.95),
+    0 0 55px 18px rgba(210,225,255,.55),
+    0 0 105px 35px rgba(130,160,255,.30)!important;
+  animation:moonGlowFloat 5s ease-in-out infinite!important;
+  transform:translateZ(0)!important;
+  will-change:transform,filter!important;
+}
+#starrySky .moon:after{
+  content:""!important;
+  position:absolute!important;
+  inset:-35px!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle,rgba(255,255,230,.28) 0 25%,rgba(170,200,255,.14) 42%,transparent 70%)!important;
+  filter:blur(12px)!important;
+  pointer-events:none!important;
+}
+@keyframes moonGlowFloat{
+  0%,100%{transform:translate3d(0,0,0) scale(1);filter:brightness(1)}
+  50%{transform:translate3d(0,-4px,0) scale(1.025);filter:brightness(1.12)}
+}
+/* Sao blink rõ hơn nhưng vẫn nhẹ GPU */
+#starrySky .star{
+  opacity:.35!important;
+  animation:realStarBlink var(--d,3s) ease-in-out var(--delay,0s) infinite!important;
+  will-change:opacity,transform!important;
+  transform:translateZ(0);
+  box-shadow:0 0 7px 2px rgba(210,235,255,.9)!important;
+}
+@keyframes realStarBlink{
+  0%,100%{opacity:.18;transform:scale(.72) translateZ(0)}
+  35%{opacity:.95;transform:scale(1.12) translateZ(0)}
+  50%{opacity:1;transform:scale(1.28) translateZ(0)}
+  68%{opacity:.42;transform:scale(.9) translateZ(0)}
+}
+@media(max-width:700px){#starrySky .moon{width:120px!important;height:120px!important;right:5vw!important;top:6vh!important}}
+</style>
 </head>
 <body>
+<div id="moonBackdrop" aria-hidden="true"><div class="moon-halo"></div><div class="moon-disc"></div><div class="moon-shine"></div></div>
+
 <div id="doorTransitionLayer" aria-hidden="true"><div id="doorTransitionPortal"></div></div>
 <div id="doorTransitionPortal"></div>
 </div>
@@ -4289,7 +4357,7 @@ body.room-entering .room-overlay.active{opacity:1!important;transform:none!impor
 </div>
 <div class="room1-navigation"><button class="room1-nav-btn" onclick="prevRoom1Page()" type="button"><i class="fa-solid fa-chevron-left"></i> TRANG TRƯỚC</button><div class="room1-dots"><button class="room1-dot active" data-page="1" onclick="goRoom1Page(1)" type="button">1</button><button class="room1-dot" data-page="2" onclick="goRoom1Page(2)" type="button">2</button><button class="room1-dot" data-page="3" onclick="goRoom1Page(3)" type="button">3</button></div><span class="room1-page-label" id="room1PageLabel">TRANG 1 / 3</span><button class="room1-nav-btn room1-next" onclick="nextRoom1Page()" type="button">TRANG KẾ <i class="fa-solid fa-chevron-right"></i></button></div><div class="room1-pages"><div class="room1-page is-active" data-page="1"><div class="grid md:grid-cols-2 gap-6 items-center bg-sky-50 p-5 rounded-2xl border-2 border-sky-200">
 <div>
-<div class="inline-block px-3 py-1 bg-sky-600 text-white rounded-lg text-xs font-black uppercase mb-2">HÌNH ẢNH MÔ PHỎNG THỰC TẾ #1</div>
+<div class="inline-block px-3 py-1 bg-sky-600 text-white rounded-lg text-xs font-black uppercase mb-2">HÌNH ẢNH  #1</div>
 <h3 class="text-lg font-black text-sky-950 mb-2">Mô Phỏng 3D Chu Chuyển Vốn Qua Trung Gian Tài Chính (TGTC)</h3>
 <p class="text-sm text-slate-800 leading-relaxed font-bold">
 <strong>Trung gian tài chính (TGTC)</strong> là các định chế tài chính chuyên hoạt động kinh doanh trong lĩnh vực tài chính - tiền tệ. Hoạt động chủ yếu và thường xuyên của các tổ chức này là <strong>tập trung các khoản vốn nhàn rỗi trong nền kinh tế</strong>, sử dụng số vốn đó cung ứng cho những chủ thể có nhu cầu vốn và cung cấp các dịch vụ tài chính - tiền tệ cho khách hàng.
@@ -4308,7 +4376,7 @@ body.room-entering .room-overlay.active{opacity:1!important;transform:none!impor
 <div class="p-2 text-center text-xs font-black text-slate-800 bg-slate-100">Hình thực tế nguồn: Tòa nhà Chi nhánh Ngân hàng Nước ngoài &amp; Đơn vị tín dụng</div>
 </div>
 <div class="order-1 md:order-2">
-<div class="inline-block px-3 py-1 bg-amber-600 text-white rounded-lg text-xs font-black uppercase mb-2">HÌNH ẢNH MÔ PHỎNG THỰC TẾ #2</div>
+<div class="inline-block px-3 py-1 bg-amber-600 text-white rounded-lg text-xs font-black uppercase mb-2">HÌNH ẢNH  #2</div>
 <h3 class="text-lg font-black text-amber-950 mb-2">Cầu Nối 2 Tầng Của Ngân Hàng Trung Gian (NHTG)</h3>
 <p class="text-sm text-slate-800 leading-relaxed font-bold">
 <strong>Ngân hàng trung gian (NHTG)</strong> là định chế tài chính mà hoạt động thường xuyên là huy động vốn, cho vay và cung ứng dịch vụ thanh toán. Khái niệm <strong>"Trung gian" có 2 nghĩa cốt lõi</strong>:
@@ -4361,7 +4429,7 @@ body.room-entering .room-overlay.active{opacity:1!important;transform:none!impor
 </div>
 </div><div class="room1-page" data-page="3"><div class="grid md:grid-cols-2 gap-6 items-center bg-indigo-50 p-5 rounded-2xl border-2 border-indigo-200">
 <div>
-<div class="inline-block px-3 py-1 bg-indigo-600 text-white rounded-lg text-xs font-black uppercase mb-2">HÌNH ẢNH MÔ PHỎNG THỰC TẾ #3</div>
+<div class="inline-block px-3 py-1 bg-indigo-600 text-white rounded-lg text-xs font-black uppercase mb-2">HÌNH ẢNH  #3</div>
 <h3 class="text-lg font-black text-indigo-950 mb-2">Khái Niệm &amp; Phân Loại Ngân Hàng Thương Mại (NHTM)</h3>
 <p class="text-sm text-slate-800 leading-relaxed font-bold">
 <strong>Ngân hàng thương mại (NHTM)</strong> là một tổ chức tài chính hoạt động với mục tiêu sinh lợi từ các giao dịch tiền tệ. Hoạt động chính của NHTM dựa vào việc <strong>huy động tiền gửi</strong> từ khách hàng để cung cấp các dịch vụ tài chính như <strong>cấp tín dụng, chiết khấu và thanh toán</strong>. NHTM hoạt động theo quy tắc kinh tế, hướng tới mục tiêu <strong>tối đa hóa lợi nhuận</strong>.
@@ -4889,7 +4957,7 @@ body.room-entering .room-overlay.active{opacity:1!important;transform:none!impor
 <div class="bg-slate-950 p-5 rounded-2xl border-2 border-indigo-400/60 shadow-2xl room4-flow-panel">
 <div class="flex items-center justify-between gap-3 mb-4">
   <div>
-    <div class="text-[11px] font-black tracking-[.18em] text-cyan-300">MÔ PHỎNG TRỰC QUAN</div>
+    <div class="text-[11px] font-black tracking-[.18em] text-cyan-300"></div>
     <h3 class="font-black text-white text-lg md:text-xl mt-1"><i class="fa-solid fa-route text-cyan-300 mr-2"></i>Hành Trình Một Khoản Vốn Qua NHTM</h3>
     <p class="text-sm text-slate-300 mt-1 leading-relaxed">Theo dõi dòng tiền đi qua các nghiệp vụ cốt lõi của ngân hàng thương mại mà không cần làm bài kiểm tra.</p>
   </div>
@@ -7078,64 +7146,37 @@ body.door-transitioning #cloudAtmosphere *{
 
     function fastOpenDoor(doorId, roomId){
       try{
-        const stage = document.getElementById('bankStage');
         const doorElem = document.getElementById(doorId);
         const doorCard = doorElem && doorElem.closest('.door-card');
-
-        if(!stage || !doorCard){
-          return originalOpenDoor(doorId, roomId);
-        }
+        if(!doorCard) return originalOpenDoor(doorId, roomId);
 
         window.landingScrollY = window.scrollY || 0;
-        document.body.classList.add('landing-locked','door-transitioning');
-
         window.activeDoorId = doorId;
 
-        /* Đọc layout đúng một lần trước khi ghi style, tránh forced reflow dây chuyền. */
-        const rect = doorCard.getBoundingClientRect();
-        const stageRect = stage.getBoundingClientRect();
+        document.body.classList.add('landing-locked','door-transitioning');
 
-        const scale = 2.9;
-        const viewportCenterX = window.innerWidth / 2;
-        const viewportCenterY = window.innerHeight / 2;
-        const stageCenterX = stageRect.left + stageRect.width / 2;
-        const stageCenterY = stageRect.top + stageRect.height / 2;
-        const doorCenterX = rect.left + rect.width / 2;
-        const doorCenterY = rect.top + rect.height / 2;
-
-        const dx = viewportCenterX - (stageCenterX + (doorCenterX-stageCenterX)*scale);
-        const dy = viewportCenterY - (stageCenterY + (doorCenterY-stageCenterY)*scale);
-
-        /* Ghi style theo một batch. */
-        stage.style.transformOrigin='center center';
-        stage.style.setProperty('--focus-x',dx+'px');
-        stage.style.setProperty('--focus-y',dy+'px');
-        stage.style.setProperty('--focus-scale',scale);
-
-        const doors = stage.querySelectorAll('.door-card');
-        doors.forEach(function(card){ card.classList.remove('opening'); });
+        document.querySelectorAll('.door-card').forEach(function(card){
+          card.classList.remove('opening');
+        });
         doorCard.classList.add('opening');
-        stage.classList.add('morph-scaled');
 
-        /*
-         * Cũ: chờ ~900ms mới mở phòng.
-         * Mới: mở phòng sau 260ms — người dùng thấy phản hồi gần như ngay lập tức,
-         * nhưng vẫn kịp nhìn thấy cửa bắt đầu mở.
-         */
+        /* Cửa phóng to nhẹ + portal sáng ở giữa, không morph cả tòa nhà. */
         window.clearTimeout(window.__fastRoomTimer);
         window.__fastRoomTimer = window.setTimeout(function(){
           const room = document.getElementById(roomId);
           if(room) room.classList.add('active');
-          document.body.classList.remove('door-transitioning');
-        },260);
+
+          /* Không giữ trạng thái transition lâu để tránh treo animation nền. */
+          requestAnimationFrame(function(){
+            document.body.classList.remove('door-transitioning');
+          });
+        }, 390);
 
       }catch(err){
-        /* Nếu có bất kỳ cấu trúc nào khác với dự kiến, dùng logic gốc. */
-        document.body.classList.remove('door-transitioning');
+        document.body.classList.remove('landing-locked','door-transitioning');
         return originalOpenDoor(doorId,roomId);
       }
     }
-
     fastOpenDoor.__fastVersion=true;
     window.openDoor=fastOpenDoor;
   }
@@ -7378,6 +7419,90 @@ body{
   }else{
     cleanDoorImages();
   }
+})();
+</script>
+
+
+<style id="r1-flow-no-lag-final">
+/* ===== DÒNG VỐN: ƯU TIÊN MƯỢT — GIỮ DÒNG TĨNH, BỎ HẠT/ĐƯỜNG CHẠY ===== */
+#room1 .r1-beautiful-flow-svg,
+#room1 .r1-flow-stage svg{
+  animation:none!important;
+}
+#room1 .r1-beautiful-track-glow,
+#room1 .r1-flow-particle,
+#room1 .r1-flow-particle-glow,
+#room1 .r1-flow-node-ring{
+  animation:none!important;
+  display:none!important;
+}
+#room1 .r1-beautiful-track{
+  animation:none!important;
+  filter:none!important;
+  stroke-dasharray:none!important;
+}
+/* Nếu SVG có animate/animateMotion thì dừng hẳn để không tranh GPU. */
+#room1 .r1-beautiful-flow-svg animate,
+#room1 .r1-beautiful-flow-svg animateMotion,
+#room1 .r1-beautiful-flow-svg set{
+  display:none!important;
+}
+#room1 .r1-route-system,
+#room1 .r1-money-stream{display:none!important}
+</style>
+<script id="r1-flow-no-lag-script">
+(function(){
+  function freezeFlow(){
+    document.querySelectorAll('#room1 .r1-beautiful-flow-svg animate, #room1 .r1-beautiful-flow-svg animateMotion, #room1 .r1-beautiful-flow-svg set').forEach(function(a){
+      try{a.remove();}catch(e){}
+    });
+    document.querySelectorAll('#room1 .r1-flow-particle, #room1 .r1-flow-particle-glow, #room1 .r1-flow-node-ring').forEach(function(el){
+      el.style.animation='none';
+      el.style.display='none';
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',freezeFlow);
+  else freezeFlow();
+  setTimeout(freezeFlow,100);
+  setTimeout(freezeFlow,500);
+})();
+</script>
+
+<style id="r1-flow-ultra-smooth">
+/* DÒNG VỐN SIÊU NHẸ: bỏ SVG animateMotion/filter nặng, dùng transform GPU */
+#room1 .r1-beautiful-flow-svg{display:none!important}
+#room1 .r1-smooth-flow-particle{position:absolute!important;z-index:7!important;width:9px;height:9px;border-radius:50%;pointer-events:none;top:55%;margin-top:-4.5px;will-change:transform;transform:translate3d(0,0,0);backface-visibility:hidden}
+#room1 .r1-smooth-flow-particle.p1{left:20%;background:#67e8f9;box-shadow:0 0 6px rgba(103,232,249,.9)}
+#room1 .r1-smooth-flow-particle.p2{left:52%;background:#fbbf24;box-shadow:0 0 6px rgba(251,191,36,.85);animation-delay:-1.55s!important}
+#room1 .r1-smooth-flow-particle{animation:r1SmoothFlowA 3.1s linear infinite!important}
+#room1 .r1-smooth-flow-particle.p2{animation-name:r1SmoothFlowB!important}
+@keyframes r1SmoothFlowA{0%{transform:translate3d(0,0,0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translate3d(235%,0,0);opacity:0}}
+@keyframes r1SmoothFlowB{0%{transform:translate3d(0,0,0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translate3d(85%,0,0);opacity:0}}
+#room1 .r1-kinetic-lab.paused .r1-smooth-flow-particle{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){#room1 .r1-smooth-flow-particle{animation:none!important}}
+</style>
+<script id="r1-ultra-smooth-flow-init">
+(function(){
+ function init(){const st=document.querySelector('#room1 .r1-flow-stage');if(!st||st.querySelector('.r1-smooth-flow-particle'))return;
+ ['p1','p2'].forEach(c=>{const e=document.createElement('span');e.className='r1-smooth-flow-particle '+c;e.setAttribute('aria-hidden','true');st.appendChild(e)});}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+<style id="r1-flow-final-performance-kill">
+/* ===== DÒNG VỐN: PERFORMANCE HARD FIX ===== */
+#room1 .r1-beautiful-flow-svg{display:none!important;animation:none!important}
+#room1 .r1-beautiful-flow-svg *,#room1 .r1-flow-particle,#room1 .r1-flow-particle-glow,#room1 .r1-flow-particle-core{animation:none!important;filter:none!important}
+#room1 .r1-beautiful-track,#room1 .r1-beautiful-track-glow{filter:none!important;animation:none!important}
+#room1 .r1-node-a:after,#room1 .r1-node-b:after,#room1 .r1-node-c:after{animation:none!important}
+#room1 .r1-smooth-flow-particle{box-shadow:none!important;filter:none!important;will-change:transform;contain:strict}
+</style>
+<script id="r1-flow-final-performance-kill-js">
+(function(){
+  function kill(){
+    document.querySelectorAll('#room1 .r1-beautiful-flow-svg').forEach(e=>e.remove());
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',kill); else kill();
 })();
 </script>
 
@@ -7954,122 +8079,7 @@ body{
   #room1 .r1-beautiful-track-glow,#room1 .r1-kinetic-lab:after{animation:none!important}
 }
 </style>
-<script id="r1-beautiful-flow-engine-v2">
-(function(){
-  const NS='http://www.w3.org/2000/svg';
-  function svgEl(tag,attrs){
-    const e=document.createElementNS(NS,tag);
-    Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v));
-    return e;
-  }
-  function getStage(){return document.querySelector('#room1 .r1-flow-stage')}
-  function getNodes(stage){
-    return stage?{a:stage.querySelector('.r1-node-a'),b:stage.querySelector('.r1-node-b'),c:stage.querySelector('.r1-node-c')}:null;
-  }
-  function addStepBadges(nodes){
-    [['a','01'],['b','02'],['c','03']].forEach(([k,n])=>{
-      const node=nodes[k]; if(!node || node.querySelector('.r1-node-step')) return;
-      const s=document.createElement('span');s.className='r1-node-step';s.textContent=n;s.setAttribute('aria-hidden','true');node.appendChild(s);
-    });
-  }
-  function edgePoint(node,stageRect,targetRect){
-    const r=node.getBoundingClientRect();
-    const t=targetRect;
-    const rc={x:r.left+r.width/2-stageRect.left,y:r.top+r.height/2-stageRect.top};
-    const tc={x:t.left+t.width/2-stageRect.left,y:t.top+t.height/2-stageRect.top};
-    if(Math.abs(tc.x-rc.x)>=Math.abs(tc.y-rc.y)){
-      return {x:(tc.x>rc.x?r.right:r.left)-stageRect.left,y:rc.y};
-    }
-    return {x:rc.x,y:(tc.y>rc.y?r.bottom:r.top)-stageRect.top};
-  }
-  function pathFor(a,b,stageRect){
-    const pa=edgePoint(a,stageRect,b.getBoundingClientRect());
-    const pb=edgePoint(b,stageRect,a.getBoundingClientRect());
-    const horizontal=Math.abs(pb.x-pa.x)>=Math.abs(pb.y-pa.y);
-    if(horizontal){
-      const bend=Math.max(34,Math.min(90,Math.abs(pb.x-pa.x)*.24));
-      const s=pb.x>pa.x?1:-1;
-      return {d:`M ${pa.x.toFixed(1)} ${pa.y.toFixed(1)} C ${(pa.x+bend*s).toFixed(1)} ${pa.y.toFixed(1)}, ${(pb.x-bend*s).toFixed(1)} ${pb.y.toFixed(1)}, ${pb.x.toFixed(1)} ${pb.y.toFixed(1)}`,horizontal:true,mid:{x:(pa.x+pb.x)/2,y:(pa.y+pb.y)/2-26}};
-    }
-    const bend=Math.max(30,Math.min(75,Math.abs(pb.y-pa.y)*.22));
-    const s=pb.y>pa.y?1:-1;
-    return {d:`M ${pa.x.toFixed(1)} ${pa.y.toFixed(1)} C ${pa.x.toFixed(1)} ${(pa.y+bend*s).toFixed(1)}, ${pb.x.toFixed(1)} ${(pb.y-bend*s).toFixed(1)}, ${pb.x.toFixed(1)} ${pb.y.toFixed(1)}`,horizontal:false,mid:{x:(pa.x+pb.x)/2+34,y:(pa.y+pb.y)/2}};
-  }
-  function clear(stage){
-    stage.querySelectorAll('.r1-beautiful-flow-svg,.r1-flow-phase').forEach(e=>e.remove());
-  }
-  function build(){
-    const stage=getStage(); if(!stage) return;
-    const nodes=getNodes(stage); if(!nodes?.a||!nodes?.b||!nodes?.c) return;
-    clear(stage);addStepBadges(nodes);
-    const sr=stage.getBoundingClientRect();
-    const w=Math.max(1,sr.width),h=Math.max(1,sr.height);
-    const svg=svgEl('svg',{class:'r1-beautiful-flow-svg',viewBox:`0 0 ${w} ${h}`,preserveAspectRatio:'none','aria-hidden':'true'});
-    const defs=svgEl('defs');
-    const ga=svgEl('linearGradient',{id:'r1FlowGradA',x1:'0%',y1:'0%',x2:'100%',y2:'0%'});
-    [['0%','#22d3ee'],['52%','#60a5fa'],['100%','#a78bfa']].forEach(([o,c])=>ga.appendChild(svgEl('stop',{offset:o,'stop-color':c})));
-    defs.appendChild(ga);
-    const gb=svgEl('linearGradient',{id:'r1FlowGradB',x1:'0%',y1:'0%',x2:'100%',y2:'0%'});
-    [['0%','#a78bfa'],['52%','#c4b5fd'],['100%','#fbbf24']].forEach(([o,c])=>gb.appendChild(svgEl('stop',{offset:o,'stop-color':c})));
-    defs.appendChild(gb);svg.appendChild(defs);
-    const routes=[
-      {from:nodes.a,to:nodes.b,cls:'a',label:'TẬP TRUNG VỐN',dur:'3.35s'},
-      {from:nodes.b,to:nodes.c,cls:'b',label:'PHÂN BỔ VỐN',dur:'3.55s'}
-    ];
-    routes.forEach((ridx,ri)=>{
-      const p=pathFor(ridx.from,ridx.to,sr);
-      const track=svgEl('path',{d:p.d,class:`r1-beautiful-track r1-beautiful-track-${ridx.cls}`});svg.appendChild(track);
-      const glow=svgEl('path',{d:p.d,class:'r1-beautiful-track-glow'});svg.appendChild(glow);
-      for(let j=0;j<2;j++){
-        const g=svgEl('g',{class:'r1-flow-particle',color:ri===0?'#67e8f9':'#f9a8d4'});
-        g.appendChild(svgEl('circle',{r:'7',class:'r1-flow-particle-glow',fill:ri===0?'#67e8f9':'#f9a8d4'}));
-        g.appendChild(svgEl('circle',{r:j===0?'3.2':'2.5',class:'r1-flow-particle-core',fill:'#ffffff'}));
-        g.appendChild(svgEl('circle',{r:'1.7',fill:ri===0?'#67e8f9':'#fbbf24',opacity:'.95'}));
-        g.appendChild(svgEl('animateMotion',{dur:ridx.dur,begin:j===0?'-0.15s':'-1.78s',repeatCount:'indefinite',rotate:'auto',path:p.d}));
-        svg.appendChild(g);
-      }
-      const phase=document.createElement('div');
-      phase.className=`r1-flow-phase ${ridx.cls}`;phase.textContent=ridx.label;
-      phase.style.left=`${p.mid.x}px`;phase.style.top=`${p.mid.y}px`;stage.appendChild(phase);
-    });
-    stage.appendChild(svg);
-  }
-  let timer=null;
-  function rebuildSoon(){clearTimeout(timer);timer=setTimeout(build,40)}
-  function boot(){
-    const stage=getStage();
-    if(!stage){requestAnimationFrame(boot);return;}
-    build();
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
-  window.addEventListener('resize',rebuildSoon);
-  document.addEventListener('click',e=>{
-    if(e.target.closest('#room1 .room1-nav-btn,#room1 .room1-dot')) rebuildSoon();
-    const mode=e.target.closest('#room1 .r1-mode-btn');
-    if(mode){
-      setTimeout(()=>{
-        const lab=document.querySelector('#room1 .r1-kinetic-lab');
-        const svg=lab?.querySelector('.r1-beautiful-flow-svg');
-        if(!svg) return;
-        if(lab.classList.contains('paused')) svg.pauseAnimations?.();
-        else svg.unpauseAnimations?.();
-      },0);
-    }
-  });
-  const obs=new MutationObserver(()=>{
-    const stage=getStage();
-    if(stage && !stage.querySelector('.r1-beautiful-flow-svg')) rebuildSoon();
-  });
-  obs.observe(document.body,{childList:true,subtree:true});
-  const pauseObserver=new MutationObserver(()=>{
-    const lab=document.querySelector('#room1 .r1-kinetic-lab');
-    const svg=lab?.querySelector('.r1-beautiful-flow-svg');
-    if(!svg) return;
-    if(lab.classList.contains('paused')) svg.querySelectorAll('animateMotion').forEach(a=>a.beginElement&&a.beginElement());
-  });
-  pauseObserver.observe(document.querySelector('#room1 .r1-kinetic-lab')||document.body,{attributes:true,subtree:true,attributeFilter:['class']});
-})();
-</script>
+<script id="r1-beautiful-flow-engine-v2">/* disabled for performance: replaced by CSS-only flow */</script>
 <style id="room1-flow-galaxy-bright-readable">
 /* ===== CỔNG 1 — DÒNG VỐN: GALAXY + MÀU SÁNG + CHỮ LỚN ===== */
 #room1 .r1-kinetic-lab{
@@ -9393,3 +9403,287 @@ body{
 </style>
 
 <style id="final-portal-cleanup">#doorMorphPortal,#doorTransitionDoor{display:none!important}</style>
+
+
+<style id="c1-smooth-entry-final">
+/* ===== CỔNG 1 — SMOOTH ENTRY / GIẢM KHỰNG KHI MỞ ===== */
+.door-card,
+.door-frame,
+.door-leaf{
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
+}
+.door-card{will-change:transform;}
+.door-frame{will-change:contents;}
+.door-leaf{
+  will-change:transform;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+.door-card.opening .door-leaf{
+  transition:transform .39s cubic-bezier(.22,.61,.36,1)!important;
+}
+.door-card.opening .portal-light{
+  transition:opacity .22s ease!important;
+}
+
+/* Trong 0.39s đầu: không để Cổng 1 vừa chạy hiệu ứng cửa vừa chạy
+   hàng loạt animation/paint của nội dung phòng. */
+body.door-transitioning #room1 *,
+body.door-transitioning #room1::before,
+body.door-transitioning #room1::after{
+  animation-play-state:paused!important;
+}
+
+/* Các trang chưa được xem không cần paint trong lúc vào phòng. */
+#room1 .room1-page:not(.is-active){
+  content-visibility:hidden;
+  contain:layout paint;
+}
+
+/* Ảnh Cổng 1 decode bất đồng bộ để không chặn frame mở cửa. */
+#room1 img{
+  decoding:async!important;
+}
+</style>
+
+<style id="c1-smoother-entry-final">
+/* ===== CỔNG 1 — GIẢM KHỰNG LẦN 2 ===== */
+/* Trong lúc cửa đang mở, tuyệt đối không bật room: display:none ở performance fix
+   giúp browser không phải layout/paint toàn bộ Cổng 1. */
+body.door-transitioning .room-overlay{
+  display:none!important;
+}
+/* Bỏ các hiệu ứng có thể tạo thêm composite/paint khi phòng vừa xuất hiện. */
+.room-overlay.active{
+  animation:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  transition:opacity .18s linear!important;
+}
+.room-overlay.active .room-content-card{
+  transition:opacity .18s linear!important;
+  transform:none!important;
+  will-change:opacity;
+}
+/* Chỉ layer cần animate mới giữ trên GPU. */
+.door-card.opening,
+.door-card.opening .door-frame,
+.door-card.opening .door-leaf{
+  transform:translateZ(0);
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+/* Tạm dừng toàn bộ hiệu ứng nặng của sảnh trong đúng thời gian mở cửa. */
+body.door-transitioning .landing-bg *,
+body.door-transitioning .galaxy-bg *,
+body.door-transitioning .star-field *,
+body.door-transitioning #auroraOverlay *,
+body.door-transitioning #meteorLiveLayer *,
+body.door-transitioning #cloudAtmosphere *{
+  animation-play-state:paused!important;
+}
+</style>
+
+<style id="no-morph-no-lag-final">
+/* ===== CHẾ ĐỘ MỞ CỬA NHẸ: KHÔNG MORPH / KHÔNG ZOOM ===== */
+.building-stage.morph-scaled,
+.building-stage.morphing,
+#doorMorphPortal,
+#doorMorphOverlay{
+  transform:none!important;
+  animation:none!important;
+  transition:none!important;
+  display:none!important;
+}
+
+/* Cửa vẫn còn nguyên và vẫn mở khi bấm bất kỳ vị trí nào trên cửa. */
+.door-card{
+  transform:none!important;
+  transition:none!important;
+  will-change:auto!important;
+}
+.door-card.opening{
+  transform:none!important;
+}
+
+/* Chỉ mở 2 cánh cửa, không scale cả tòa nhà. */
+.door-card.opening .door-leaf{
+  transition:transform .14s ease-out!important;
+  will-change:transform;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+.door-card.opening .portal-light{
+  transition:opacity .10s linear!important;
+}
+
+/* Phòng chỉ fade rất nhẹ sau khi cửa đã mở. */
+.room-overlay.active{
+  animation:none!important;
+  transform:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.room-overlay.active .room-content-card{
+  animation:none!important;
+  transform:none!important;
+  transition:opacity .10s linear!important;
+}
+
+/* Khi chuyển phòng: dừng toàn bộ hiệu ứng sảnh, không để chúng tranh GPU. */
+body.door-transitioning .landing-bg *,
+body.door-transitioning .galaxy-bg *,
+body.door-transitioning .star-field *,
+body.door-transitioning #auroraOverlay *,
+body.door-transitioning #meteorLiveLayer *,
+body.door-transitioning #cloudAtmosphere *{
+  animation-play-state:paused!important;
+}
+</style>
+
+
+<style id="door-zoom-magic-circle-final">
+/* ===== CỬA MỞ: PHÓNG TO + VÒNG TRÒN MA THUẬT PHÁT SÁNG ===== */
+.door-card.opening{
+  position:relative!important;
+  z-index:999!important;
+  transform:scale(2.05) translateZ(0)!important;
+  transform-origin:center center!important;
+  transition:transform .34s cubic-bezier(.2,.75,.25,1)!important;
+  will-change:transform;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+
+/* Vòng tròn nằm chính giữa cánh cửa. Không bắt click. */
+.door-card.opening .door-frame::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:78px;
+  height:78px;
+  margin:-39px 0 0 -39px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:30;
+  opacity:0;
+  transform:scale(.18) rotate(0deg);
+  background:
+    radial-gradient(circle,rgba(255,255,255,.98) 0 7%,rgba(125,211,252,.75) 16%,rgba(59,130,246,.22) 42%,transparent 68%);
+  border:3px solid rgba(220,248,255,.98);
+  box-shadow:
+    0 0 8px rgba(255,255,255,1),
+    0 0 22px rgba(56,189,248,1),
+    0 0 45px rgba(59,130,246,.95),
+    0 0 75px rgba(139,92,246,.72),
+    inset 0 0 18px rgba(255,255,255,.9);
+  animation:magicDoorPortal .72s cubic-bezier(.15,.8,.2,1) forwards;
+}
+
+/* Vòng xoáy nhỏ bên trong, nhẹ GPU */
+.door-card.opening .door-frame::after{
+  background:
+    conic-gradient(from 0deg,
+      rgba(255,255,255,.98),
+      rgba(56,189,248,.15),
+      rgba(167,139,250,.95),
+      rgba(255,255,255,.15),
+      rgba(56,189,248,.95),
+      rgba(255,255,255,.98)),
+    radial-gradient(circle,rgba(255,255,255,.95) 0 9%,rgba(96,165,250,.7) 20%,rgba(59,130,246,.18) 48%,transparent 70%);
+  background-clip:padding-box;
+  animation:magicDoorPortal .72s cubic-bezier(.15,.8,.2,1) forwards, magicDoorSpin .72s linear forwards;
+}
+
+@keyframes magicDoorPortal{
+  0%{opacity:0;transform:scale(.18) rotate(0deg)}
+  18%{opacity:1}
+  52%{opacity:1;transform:scale(1.18) rotate(135deg)}
+  100%{opacity:0;transform:scale(1.65) rotate(300deg)}
+}
+@keyframes magicDoorSpin{to{filter:hue-rotate(25deg)}}
+
+/* Không để hiệu ứng hover tranh GPU với hiệu ứng mở cửa. */
+.door-card.opening:hover{
+  transform:scale(2.05) translateZ(0)!important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .door-card.opening{transition:transform .2s linear!important;transform:scale(1.7) translateZ(0)!important}
+  .door-card.opening .door-frame::after{animation:none!important;opacity:.9;transform:scale(1) rotate(0deg)}
+}
+</style>
+
+<style id="moon-blink-background-final">
+/* ===== NỀN GALAXY: MẶT TRĂNG + SAO BLINK BLINK ===== */
+#moonBackdrop{
+  position:fixed;
+  top:7vh;
+  right:7vw;
+  width:150px;
+  height:150px;
+  z-index:1;
+  pointer-events:none;
+  transform:translateZ(0);
+  contain:layout paint;
+  isolation:isolate;
+}
+#moonBackdrop .moon-disc{
+  position:absolute;
+  inset:20px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 30%,rgba(255,255,255,.98) 0 8%,rgba(226,232,240,.98) 32%,rgba(148,163,184,.96) 72%,rgba(71,85,105,.9) 100%);
+  box-shadow:0 0 20px rgba(255,255,255,.8),0 0 48px rgba(147,197,253,.5),0 0 90px rgba(99,102,241,.25);
+  overflow:hidden;
+}
+#moonBackdrop .moon-disc::before{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:
+    radial-gradient(circle at 25% 65%,rgba(71,85,105,.28) 0 7%,transparent 8%),
+    radial-gradient(circle at 68% 35%,rgba(71,85,105,.2) 0 9%,transparent 10%),
+    radial-gradient(circle at 58% 72%,rgba(51,65,85,.2) 0 6%,transparent 7%),
+    radial-gradient(circle at 78% 68%,rgba(71,85,105,.16) 0 5%,transparent 6%);
+}
+#moonBackdrop .moon-halo{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(191,219,254,.28) 0 32%,rgba(129,140,248,.12) 48%,transparent 72%);
+  filter:blur(5px);
+}
+#moonBackdrop .moon-shine{
+  position:absolute;inset:13px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.32);
+  box-shadow:0 0 30px rgba(255,255,255,.28);
+}
+
+/* Sao blink nhe, chi animate opacity/transform de GPU xu ly muot. */
+#starrySky{
+  z-index:2!important;
+  pointer-events:none!important;
+}
+#starrySky .star{
+  animation:starBlinkSmooth var(--d,3s) ease-in-out var(--delay,0s) infinite!important;
+  will-change:opacity,transform;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+@keyframes starBlinkSmooth{
+  0%,100%{opacity:.28;transform:scale(.82) translateZ(0)}
+  45%{opacity:1;transform:scale(1.08) translateZ(0)}
+  58%{opacity:.62;transform:scale(.96) translateZ(0)}
+}
+@media(max-width:700px){#moonBackdrop{width:110px;height:110px;top:6vh;right:5vw}.moon-disc{inset:16px!important}.moon-shine{inset:11px!important}}
+@media(prefers-reduced-motion:reduce){#starrySky .star{animation:none!important;opacity:.75!important;transform:none!important}}
+</style>
+<style id="remove-simulation-labels">
+#room1 .r1-lab-kicker,
+#room1 .r1-lab-icon,
+#room1 .r1-lab-title i,
+#room1 .r1-lab-title .fa-image,
+#room1 .r1-lab-title .fa-images,
+#room1 .r1-lab-title .fa-eye,
+#room1 .r1-simulation-label,
+#room1 .simulation-label{display:none!important}
+</style>
